@@ -1,6 +1,6 @@
 package oop.gourmetquest;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     public static final Scanner scanner = new Scanner(System.in);
@@ -16,19 +16,19 @@ public class App {
 
             System.out.print("Choose Your Path: ");
             
-            int FoodPath = scanner.nextInt();
+            String FoodPath = scanner.nextLine();
 
             switch (FoodPath) {
-                case 1:
+                case "1":
                     gourmetQuest.Searchquisine();
                     break;
-                case 2:
+                case "2":
                     gourmetQuest.IngredientsSearch();
                     break;
-                case 3:
+                case "3":
                     gourmetQuest.FoodSummon();
                     break;
-                case 4:
+                case "4":
                     System.out.println("\nUntil we meet again traveler\n");
                     programmedClosed();
                 default:

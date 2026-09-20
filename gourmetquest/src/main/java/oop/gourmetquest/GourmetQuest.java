@@ -11,7 +11,6 @@ public class GourmetQuest {
     public static final Scanner scanner = new Scanner(System.in);
 
     FileHandler foodhHandler = new FileHandler();
-    // FoodItems foodItems = new FoodItems();
 
     String Path;
 

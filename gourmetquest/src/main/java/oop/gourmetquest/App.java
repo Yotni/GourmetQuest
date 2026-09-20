@@ -16,9 +16,9 @@ public class App {
 
             System.out.print("Choose Your Path: ");
             
-            int Path = scanner.nextInt();
+            int FoodPath = scanner.nextInt();
 
-            switch (Path) {
+            switch (FoodPath) {
                 case 1:
                     gourmetQuest.Searchquisine();
                     break;
@@ -37,8 +37,9 @@ public class App {
                     continue;
 
             }
-
+            clearScreen();
         }
+        
 
 
     }

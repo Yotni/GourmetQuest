@@ -60,8 +60,8 @@ public class FoodItems {
         System.out.println("-".repeat(30));
         System.out.println("Method: " );
         for(String steps : Method){
-            System.out.println("Step" + j + ":\n" +" \t- " + steps);
-            i++;
+            System.out.println("Step " + j + ":\n" +" \t- " + steps);
+            j++;
         }
     }
 

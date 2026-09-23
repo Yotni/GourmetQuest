@@ -1,14 +1,12 @@
 package oop.gourmetquest;
 import  oop.gourmetquest.Model.*;
-import  oop.gourmetquest.IO.*;
+import  oop.gourmetquest.DataHandler.*;
 
 import java.util.*;
 
 
 public class GourmetQuest {
     public static final Scanner scanner = new Scanner(System.in);
-
-    FileHandler foodhHandler = new FileHandler();
 
     String Path;
 
@@ -27,15 +25,18 @@ public class GourmetQuest {
             if (Search.equalsIgnoreCase("X"))
                 return;
             else{
-                FoodItems Found = foodhHandler.SearchingName(Search);
-                if (Found != null) {
-                    Found.DisplayFood();
-                }
-                if (Found == null) {
+                List<FoodItems> ListOfResults = FileHandler.SearchingName(Search);
+                if (ListOfResults.isEmpty()) {
                     App.clearScreen();
-                    System.out.println("Food not found!\n");
-                    
-                }
+                    System.out.println("Food not found!\n");  
+                }   
+                else {
+                    System.out.println("Found it: ");
+                    for(FoodItems Item : ListOfResults){
+                        System.out.println("-".repeat(30));
+                        Item.DisplayFood();
+                    } 
+                }  
             }
         }
     }

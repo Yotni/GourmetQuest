@@ -10,11 +10,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 public class FileHandler {
 
-    File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\formatted_data.json");
-    ObjectMapper mapper = new ObjectMapper();
+    private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\formatted_data.json");
+    private static final ObjectMapper mapper = new ObjectMapper();
 
-
-    public List<FoodItems> deserialize(){
+    
+    public static List<FoodItems> deserialize(){
         try {
             return mapper.readValue(FilePath, new TypeReference<List<FoodItems>>() {});
         } catch (IOException e) {
@@ -24,20 +24,19 @@ public class FileHandler {
     }
 
 
-    public FoodItems SearchingName(String Search){
+    public static List<FoodItems> SearchingName(String Search){
 
         List<FoodItems> foodItems = deserialize();
+        List<FoodItems> ListOfResults = new ArrayList<>();
         if (foodItems != null) {
             for (FoodItems foodItem : foodItems){
-                if (Search.equalsIgnoreCase(foodItem.getName())){
-                    System.out.println("Found it: ");
-                    return foodItem;
-
+                if (foodItem.getName().toLowerCase().contains(Search.toLowerCase())){
+                    ListOfResults.add(foodItem);
                 }
             }
         }
-        return null;
-        
+        return ListOfResults;
     }
+    
 
 }

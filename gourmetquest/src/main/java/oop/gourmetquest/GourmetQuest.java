@@ -2,9 +2,7 @@ package oop.gourmetquest;
 import  oop.gourmetquest.Model.*;
 import  oop.gourmetquest.IO.*;
 
-
 import java.util.*;
-
 
 
 public class GourmetQuest {
@@ -50,7 +48,7 @@ public class GourmetQuest {
             int ingredientsPick = scanner.nextInt();
             switch (ingredientsPick) {
                 case 1:
-                    
+                    // wala pa dinie eh
                     break;
                 case 2:
 

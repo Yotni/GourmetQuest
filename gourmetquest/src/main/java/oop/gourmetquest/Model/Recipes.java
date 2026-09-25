@@ -2,19 +2,20 @@ package oop.gourmetquest.Model;
 
 import java.util.*;
 
-public class FoodItems {
+public class Recipes {
 
     public  String Name;
     public  String url;
     public  String Author;
     public  List<String> Ingredients;
     public  String Description;
+    
     public  List<String> Method;
 
-    FoodItems(){}
+    Recipes(){}
 
 
-    FoodItems(String Name, String url, List<String> Ingredients, String Description, String Author, List<String> Method){
+    Recipes(String Name, String url, List<String> Ingredients, String Description, String Author, List<String> Method){
         this.Name = Name;
         this.url = url;
         this.Author = Author;

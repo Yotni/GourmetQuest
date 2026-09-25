@@ -14,29 +14,30 @@ public class FileHandler {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     
-    public static List<FoodItems> deserialize(){
+    public static List<Recipes> deserialize(){
         try {
-            return mapper.readValue(FilePath, new TypeReference<List<FoodItems>>() {});
+            return mapper.readValue(FilePath, new TypeReference<List<Recipes>>() {});
         } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
     }
 
 
-    public static List<FoodItems> SearchingName(String Search){
+    public static List<Recipes> SearchingName(String Search){
 
-        List<FoodItems> foodItems = deserialize();
-        List<FoodItems> ListOfResults = new ArrayList<>();
+        List<Recipes> foodItems = deserialize();
+        List<Recipes> listOfResults = new ArrayList<>();
         if (foodItems != null) {
-            for (FoodItems foodItem : foodItems){
+            for (Recipes foodItem : foodItems){
                 if (foodItem.getName().toLowerCase().contains(Search.toLowerCase())){
-                    ListOfResults.add(foodItem);
+                    listOfResults.add(foodItem);
                 }
             }
         }
-        return ListOfResults;
+        return listOfResults;
     }
-    
 
 }

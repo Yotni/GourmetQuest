@@ -7,6 +7,7 @@ import java.util.*;
 
 public class GourmetQuest {
     public static final Scanner scanner = new Scanner(System.in);
+    public static final Produced produced = new Produced();
 
     String Path;
 
@@ -25,14 +26,14 @@ public class GourmetQuest {
             if (Search.equalsIgnoreCase("X"))
                 return;
             else{
-                List<FoodItems> ListOfResults = FileHandler.SearchingName(Search);
-                if (ListOfResults.isEmpty()) {
+                List<Recipes> listOfResults = FileHandler.SearchingName(Search);
+                if (listOfResults.isEmpty()) {
                     App.clearScreen();
                     System.out.println("Food not found!\n");  
                 }   
                 else {
                     System.out.println("Found it: ");
-                    for(FoodItems Item : ListOfResults){
+                    for(Recipes Item : listOfResults){
                         System.out.println("-".repeat(30));
                         Item.DisplayFood();
                     } 
@@ -42,23 +43,23 @@ public class GourmetQuest {
     }
     void IngredientsSearch(){
         // System.out.println();
-        System.out.println("Summon Food Through Ingredients: ");
-        System.out.println();
         while (true) {
+            App.clearScreen();
+            System.out.println("Summon Food Through Ingredients: ");
+            System.out.println();
             System.out.print("Choose Your Path: ");
-            int ingredientsPick = scanner.nextInt();
+            String ingredientsPick = scanner.nextLine();
             switch (ingredientsPick) {
-                case 1:
-                    // wala pa dinie eh
-                    break;
-                case 2:
+                case "1":
+                    produced.gatherIngredient();
+                case "2":
 
                     break;
-                case 3:
+                case "4":
 
                     break;
 
-                case 4:
+                case "5":
 
                     break;
             

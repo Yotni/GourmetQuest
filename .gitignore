@@ -17,6 +17,6 @@ buildNumber.properties
 .classpath
 
 **/target/
-*.class
+**/*.class
 .vscode/
 

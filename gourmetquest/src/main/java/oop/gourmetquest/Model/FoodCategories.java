@@ -9,7 +9,7 @@ public abstract class FoodCategories {
     // protected FoodItems getName;
     protected List<String> ingredientList;
 
-    public abstract void PickMethod(String CategoriesPath);
+    public abstract void gatherIngredient();
     
 
     public static void CategoriesPrintFormat(List<String> ingredientList){
@@ -25,5 +25,14 @@ public abstract class FoodCategories {
             count ++;
         }
     }
+
+    public static String GetIngredients (String pickProduced, List<String> ingredientsList) {
+        for (String ingredient : ingredientsList){
+            if (pickProduced.equalsIgnoreCase((ingredient))){
+                return ingredient;
+            }
+        }
+        return "";
+    } 
 
 }

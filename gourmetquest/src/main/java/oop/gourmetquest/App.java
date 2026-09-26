@@ -13,7 +13,6 @@ public class App {
             System.out.println("[2] Summon Food Through Ingredients");
             System.out.println("[3] Summon the Food from your Ingedients");
             System.out.println("[4] Close the Gate");
-
             System.out.print("Choose Your Path: ");
             
             String FoodPath = scanner.nextLine();
@@ -39,10 +38,6 @@ public class App {
             }
             clearScreen();
         }
-        
-
-        
-
     }
 
     public static void clearScreen() {
@@ -56,6 +51,9 @@ public class App {
     public static void programmedClosed(){
         System.exit(0);
     }
+    // public int getTerminalWidth () {
+        
+    // }
 
     
 

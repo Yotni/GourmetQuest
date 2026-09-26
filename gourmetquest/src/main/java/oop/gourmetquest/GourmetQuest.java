@@ -34,7 +34,7 @@ public class GourmetQuest {
                 else {
                     System.out.println("Found it: ");
                     for(Recipes Item : listOfResults){
-                        System.out.println("-".repeat(30));
+                        System.out.println("-".repeat(150));
                         Item.DisplayFood();
                     } 
                 }  

@@ -17,7 +17,7 @@ public class Produced extends FoodCategories {
                                         "Tomato", "Chestnut"
                                         );
 
-    public static List<String> ListOfFruits = List.of("Apple", "");                                    
+    public static List<String> ListOfFruits = List.of("Apple", "Sausages", "Ham");                                    
 
 
     List<String> Vegetables;
@@ -30,7 +30,6 @@ public class Produced extends FoodCategories {
 
     @Override
     public void gatherIngredient(){
-        List<String> ingredientsList = null;
         // Guys pwede pala toh sa java hahahahhahaha ang galing
         Produced: while (true) {
             App.clearScreen();
@@ -42,16 +41,15 @@ public class Produced extends FoodCategories {
             switch (producedPath.toLowerCase()) {
                 case "1":
                     CategoriesPrintFormat(ListOfVegetables);
-                    ingredientsList = ListOfVegetables;
+                    ingredientList = ListOfVegetables;
                     break;
                 case "2":
                     CategoriesPrintFormat(ListOfFruits);
-                    ingredientsList = ListOfFruits;
+                    ingredientList = ListOfFruits;
                     break;
                 case "x":
                     break Produced;
                 default:
-                    App.invalidInput();
                     continue;
             }
             PickingProduced: while (true) {
@@ -60,9 +58,15 @@ public class Produced extends FoodCategories {
                 if (pickProduced.equalsIgnoreCase("x")) {
                     break PickingProduced;
                 }
-                String ingredient = GetIngredients(pickProduced, ingredientsList);
+                String ingredient = GetIngredients(pickProduced, ingredientList);
                 if (ingredient.isEmpty()) {
                     System.out.println ("The ingredient " + pickProduced + " is not on the list");
+                    continue;
+                }
+
+                boolean isduplicate = isduplicate(ingredient);
+                if (isduplicate) {
+                    System.out.println ("The ingredient " + pickProduced + " is already on the list");
                     continue;
                 }
 
@@ -77,6 +81,14 @@ public class Produced extends FoodCategories {
         }
             
     } 
+    
+    @Override 
+    protected boolean isduplicate (String ingredient) {
+        if (Vegetables.contains(ingredient) || Fruits.contains(ingredient)) {
+            return true;
+        }
+        return false;
+    }
     
     public List<String> getVegetables () {
         return Vegetables;

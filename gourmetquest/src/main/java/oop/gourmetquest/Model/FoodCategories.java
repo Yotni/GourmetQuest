@@ -1,5 +1,6 @@
 package oop.gourmetquest.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FoodCategories {
@@ -8,8 +9,13 @@ public abstract class FoodCategories {
     protected String CategoriesPath;
     // protected FoodItems getName;
     protected List<String> ingredientList;
+    
+    FoodCategories () {
+        ingredientList = new ArrayList<> ();
+    }
 
     public abstract void gatherIngredient();
+    protected abstract boolean isduplicate(String ingredient);
     
 
     public static void CategoriesPrintFormat(List<String> ingredientList){

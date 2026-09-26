@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 public class FileHandler {
 
-    private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\formatted_data.json");
+    private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\recipes.json");
     private static final ObjectMapper mapper = new ObjectMapper();
 
     
@@ -28,12 +28,12 @@ public class FileHandler {
 
     public static List<Recipes> SearchingName(String Search){
 
-        List<Recipes> foodItems = deserialize();
+        List<Recipes> recipes = deserialize();
         List<Recipes> listOfResults = new ArrayList<>();
-        if (foodItems != null) {
-            for (Recipes foodItem : foodItems){
-                if (foodItem.getName().toLowerCase().contains(Search.toLowerCase())){
-                    listOfResults.add(foodItem);
+        if (recipes != null) {
+            for (Recipes recipe : recipes){
+                if (recipe.getName().toLowerCase().contains(Search.toLowerCase())){
+                    listOfResults.add(recipe);
                 }
             }
         }

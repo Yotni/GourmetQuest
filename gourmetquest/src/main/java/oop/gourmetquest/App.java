@@ -22,7 +22,7 @@ public class App {
                     gourmetQuest.Searchquisine();
                     break;
                 case "2":
-                    gourmetQuest.IngredientsSearch();
+                    gourmetQuest.filterIngredients();
                     break;
                 case "3":
                     gourmetQuest.FoodSummon();

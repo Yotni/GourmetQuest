@@ -9,7 +9,7 @@ public class Produced extends FoodCategories {
     public static final Scanner scanner = new Scanner(System.in);
 
     //https://ospi.k12.wa.us/sites/default/files/2023-08/vegetablesa-z.pdf:
-    public static List<String> ListOfVegetables= List.of("Artichoke", "Avocado", "Broccoli", "Brussels Sprouts", "Cabbage",
+    public static List<String> ListOfVegetables= List.of("Artichoke", "Broccoli", "Brussels Sprouts", "Cabbage",
                                         "Savoy Cabbage", "Carrot", "Cauliflower", "Celeriac", "Celery", "Chard", "Chicory",
                                         "Corn", "Cress", "Cucumber", "Garlic", "Green Bean", "Kale", "Leek", "Lettuce", 
                                         "Mushroom", "Onion", "Parsnip", "Pea", "Pepper", "Potato", "Pumpkin", "Radicchio",
@@ -17,7 +17,7 @@ public class Produced extends FoodCategories {
                                         "Tomato", "Chestnut"
                                         );
 
-    public static List<String> ListOfFruits = List.of("Apple", "Sausages", "Ham");                                    
+    public static List<String> ListOfFruits = List.of("Apple", "Mango", "Pomegranate, Coconut", " Avocado");                                    
 
 
     List<String> Vegetables;
@@ -64,8 +64,7 @@ public class Produced extends FoodCategories {
                     continue;
                 }
 
-                boolean isduplicate = isduplicate(ingredient);
-                if (isduplicate) {
+                if (isduplicate(ingredient)) {
                     System.out.println ("The ingredient " + pickProduced + " is already on the list");
                     continue;
                 }

@@ -20,6 +20,7 @@ public abstract class FoodCategories {
 
     public static void CategoriesPrintFormat(List<String> ingredientList){
         int count = 0;
+        System.out.println("-".repeat(150));
         for (String item : ingredientList){
             if(count != 14){
                 System.out.print(item + " | ");

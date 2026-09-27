@@ -6,8 +6,10 @@ import java.util.*;
 
 
 public class GourmetQuest {
+    
     public static final Scanner scanner = new Scanner(System.in);
     public static final Produced produced = new Produced();
+    public static final MeatProduct meatProduct = new MeatProduct();
 
     String Path;
 
@@ -41,27 +43,29 @@ public class GourmetQuest {
             }
         }
     }
-    void IngredientsSearch(){
+    void filterIngredients(){
         // System.out.println();
-        while (true) {
+        ingredientSearch: while (true) {
             App.clearScreen();
             System.out.println("Summon Food Through Ingredients: ");
+            
+            System.out.println("Total Grabbed Ingredients: " + getTotalIngredients());
             System.out.println();
             System.out.print("Choose Your Path: ");
             String ingredientsPick = scanner.nextLine();
-            switch (ingredientsPick) {
+            switch (ingredientsPick.toLowerCase()) {
                 case "1":
                     produced.gatherIngredient();
+                    break;
                 case "2":
-
+                    meatProduct.gatherIngredient();
                     break;
                 case "4":
 
                     break;
 
-                case "5":
-
-                    break;
+                case "x":
+                    break ingredientSearch;
             
                 default:
                     break;
@@ -74,8 +78,17 @@ public class GourmetQuest {
     void FoodSummon(){
          System.out.println("Summoning your Food: ");
 
-         
     }
 
-
+    public int getTotalIngredients() {
+        List<String> Basket1 = produced.getVegetables();
+        List<String> Basket2 = produced.getFruits();
+        List<String> Basket3 = meatProduct.getLandMeats();
+        List<String> Basket4 = meatProduct.getFishes();
+        List<String> Basket5 = meatProduct.getProcessedMeats();
+        
+        int TotalBasket = Basket1.size() + Basket2.size() + Basket3.size() + Basket4.size() + Basket5.size();
+        return TotalBasket;
+    
+    }
 }

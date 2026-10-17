@@ -9,7 +9,7 @@ public class Produced extends FoodCategories {
     public static final Scanner scanner = new Scanner(System.in);
 
     //https://ospi.k12.wa.us/sites/default/files/2023-08/vegetablesa-z.pdf:
-    public static List<String> ListOfVegetables= List.of("Artichoke", "Broccoli", "Brussels Sprouts", "Cabbage",
+    public static List<String> listOfVegetables= List.of("Artichoke", "Broccoli", "Brussels Sprouts", "Cabbage",
                                         "Savoy Cabbage", "Carrot", "Cauliflower", "Celeriac", "Celery", "Chard", "Chicory",
                                         "Corn", "Cress", "Cucumber", "Garlic", "Green Bean", "Kale", "Leek", "Lettuce", 
                                         "Mushroom", "Onion", "Parsnip", "Pea", "Pepper", "Potato", "Pumpkin", "Radicchio",
@@ -17,66 +17,42 @@ public class Produced extends FoodCategories {
                                         "Tomato", "Chestnut"
                                         );
 
-    public static List<String> ListOfFruits = List.of("Apple", "Mango", "Pomegranate, Coconut", " Avocado");                                    
+    public static List<String> listOfFruits = List.of("Apple", "Mango", "Pomegranate, Coconut", " Avocado");                                    
 
 
     List<String> Vegetables;
     List<String> Fruits;
     
     public Produced () {
-        this.Vegetables = new ArrayList<> ();
-        this.Fruits = new ArrayList<> ();
+        Vegetables = new ArrayList<> ();
+        Fruits = new ArrayList<> ();
     }
 
     @Override
-    public void gatherIngredient(){
+    public void gatherIngredients(){
         // Guys pwede pala toh sa java hahahahhahaha ang galing
         Produced: while (true) {
             App.clearScreen();
-            System.out.println("The fields await your command, what do you want to gather? [X to Exit]");
+            System.out.println("What do you want to gather? [X to Exit]");
             System.out.println("[1] Vegetables \n[2] Fruits");
             System.out.print("Choose your field:");
             String producedPath = scanner.nextLine();
 
             switch (producedPath.toLowerCase()) {
                 case "1":
-                    CategoriesPrintFormat(ListOfVegetables);
-                    ingredientList = ListOfVegetables;
+                    CategoriesPrintFormat(listOfVegetables);
+                    ingredientList = listOfVegetables;
                     break;
                 case "2":
-                    CategoriesPrintFormat(ListOfFruits);
-                    ingredientList = ListOfFruits;
+                    CategoriesPrintFormat(listOfFruits);
+                    ingredientList = listOfFruits;
                     break;
                 case "x":
                     break Produced;
                 default:
                     continue;
             }
-            PickingProduced: while (true) {
-                System.out.print("\nGather a Produced [X to Exit]:  ");
-                String pickProduced = scanner.nextLine();
-                if (pickProduced.equalsIgnoreCase("x")) {
-                    break PickingProduced;
-                }
-                String ingredient = GetIngredients(pickProduced, ingredientList);
-                if (ingredient.isEmpty()) {
-                    System.out.println ("The ingredient " + pickProduced + " is not on the list");
-                    continue;
-                }
-
-                if (isduplicate(ingredient)) {
-                    System.out.println ("The ingredient " + pickProduced + " is already on the list");
-                    continue;
-                }
-
-                if (producedPath.equals("1")) {
-                    Vegetables.add(ingredient);
-                }
-                else {
-                    Fruits.add(ingredient);
-                }
-                System.out.println ("The ingredient " + ingredient + " is added on the list");
-            } 
+            gatheringIngredients (producedPath, ingredientList);
         }
             
     } 
@@ -87,6 +63,17 @@ public class Produced extends FoodCategories {
             return true;
         }
         return false;
+    }
+
+    @Override 
+    protected void appendtoList (String ingredientPath, String ingredient) {
+        if (ingredientPath.equals("1")) {
+            Vegetables.add(ingredient);
+        }
+        else {
+            Fruits.add(ingredient);
+        }
+        System.out.println ("The ingredient " + ingredient + " is added on the list");
     }
     
     public List<String> getVegetables () {

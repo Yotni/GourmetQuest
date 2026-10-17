@@ -4,28 +4,29 @@ import java.util.*;
 
 public class App {
     public static final Scanner scanner = new Scanner(System.in);
-    public static final GourmetQuest gourmetQuest = new GourmetQuest("Path");
+    public static final GourmetQuest gourmetQuest = new GourmetQuest();
     public static void main( String[] args ){
         
         while(true){
             System.out.println("Gourmet Quest: Search A food that will change your Life!");
-            System.out.println("[1] Summon a Cuisine");
-            System.out.println("[2] Summon Food Through Ingredients");
-            System.out.println("[3] Summon the Food from your Ingedients");
-            System.out.println("[4] Close the Gate");
+            System.out.println("[1] Search recipes");
+            System.out.println("[2] Saved Recipes");
+            System.out.println("[3] To do List");
+            System.out.println("[3] What can I cook? [Random Recipes]");
+            System.out.println("[4] Exit");
             System.out.print("Choose Your Path: ");
             
             String FoodPath = scanner.nextLine();
 
             switch (FoodPath) {
                 case "1":
-                    gourmetQuest.Searchquisine();
+                    searchRecipes();
                     break;
                 case "2":
-                    gourmetQuest.filterIngredients();
+                    
                     break;
                 case "3":
-                    gourmetQuest.FoodSummon();
+
                     break;
                 case "4":
                     System.out.println("\nUntil we meet again traveler\n");
@@ -40,21 +41,42 @@ public class App {
         }
     }
 
+    private static void searchRecipes() {
+        searchRecipes : while (true) {
+            clearScreen();
+            System.out.println("How do you want to search[X to exit]:");
+            System.out.println("[1] Search through name");
+            System.out.println("[2] Search through filtering");
+            System.out.print("Choose Your Path: ");
+
+            String SearchPath = scanner.nextLine();
+                if (SearchPath.equalsIgnoreCase("X")) {
+                    break searchRecipes;
+                }
+                if (SearchPath.equalsIgnoreCase("1")) {
+                    gourmetQuest.SearchName();
+                }
+                else if (SearchPath.equalsIgnoreCase("2")) {
+                    gourmetQuest.filterIngredients();
+                }
+                else {
+                    invalidInput();
+                }            
+        }
+
+    }
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
     public static void invalidInput() {
-        System.out.println("Though shall not pass! When you cannot even input the right way!!!\n");
+        System.out.println("Input is invalid!\n");
 
     }
     public static void programmedClosed(){
         System.exit(0);
     }
-    // public int getTerminalWidth () {
-        
-    // }
-
+   
     
 
 }

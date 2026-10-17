@@ -30,11 +30,11 @@ public class MeatProduct extends FoodCategories{
     }
 
     @Override
-    public void gatherIngredient() {
+    public void gatherIngredients() {
         Meat: while (true) {
             App.clearScreen();
 
-            System.out.println("Time to Hunt, What do you want to butcher? [X to Exit]");
+            System.out.println("What do you want to butcher? [X to Exit]");
             System.out.println("[1] Land meat \n[2] Fishes [3] \nProcess meat");
             System.out.print("Choose your field:");
             String meatProductPath = scanner.nextLine();
@@ -56,37 +56,9 @@ public class MeatProduct extends FoodCategories{
                     break Meat;
             
                 default:
-                    break;
-
+                    continue;
             }
-            HungtingMeat: while (true) {
-                System.out.print("\nHunt a Meat Product [X to Exit]:  ");
-                String huntMeat = scanner.nextLine();
-                if (huntMeat.equalsIgnoreCase("x")) {
-                    break HungtingMeat;
-                }
-                String ingredient = GetIngredients(huntMeat, ingredientList);
-                if (ingredient.isEmpty()) {
-                    System.out.println ("The ingredient " + huntMeat + " is not on the list");
-                    continue;
-                }
-
-                if (isduplicate(ingredient)) {
-                    System.out.println ("The ingredient " + huntMeat + " is already on the list");
-                    continue;
-                }
-
-                if (meatProductPath.equals("1")) {
-                    landMeats.add(ingredient);
-                }
-                else if (meatProductPath.equals("2")) {
-                    fishes.add(ingredient);
-                }
-                else {
-                    processedMeats.add(ingredient);
-                }
-                System.out.println ("The ingredient " + ingredient + " is added on the list");
-            } 
+            gatheringIngredients (meatProductPath, ingredientList);
         }
     }
 
@@ -98,6 +70,22 @@ public class MeatProduct extends FoodCategories{
         return false;
     }
 
+    @Override
+    protected void appendtoList (String ingredientPath, String ingredient) {
+        if (ingredientPath.equals("1")) {
+            landMeats.add(ingredient);
+        }
+        else if (ingredientPath.equals("2")) {
+                    fishes.add(ingredient);
+        }
+        else {
+            processedMeats.add(ingredient);
+        }
+        System.out.println ("The ingredient " + ingredient + " is added on the list");
+    }
+
+
+    // getters methods
     public List<String> getLandMeats() {
         return landMeats;
     }

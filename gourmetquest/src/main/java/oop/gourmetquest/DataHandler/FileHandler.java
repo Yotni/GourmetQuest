@@ -14,7 +14,7 @@ public class FileHandler {
     private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\recipes.json");
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    
+    //jackson objectmapper
     public static List<Recipes> deserialize(){
         try {
             return mapper.readValue(FilePath, new TypeReference<List<Recipes>>() {});
@@ -26,7 +26,7 @@ public class FileHandler {
         return null;
     }
 
-
+    //find Food name
     public static List<Recipes> SearchingName(String Search){
 
         List<Recipes> recipes = deserialize();
@@ -40,5 +40,26 @@ public class FileHandler {
         }
         return listOfResults;
     }
+
+
+    // find food ingredient
+
+    // public static  List<Recipes> filteringRecipes (String filterPath) {
+    //     List<Recipes> recipes = deserialize();
+    //     List<Recipes> listOfResults = new ArrayList<>();
+       
+    //     for (Recipes recipe : recipes ) {
+    //         if (filterPath.equals("1")) {
+    //             if(recipe.getIngredients().containsAll(Allingredients)) {
+    //                 return listOfResults;
+    //             }
+    //         }
+    //     }
+
+
+
+    // }
+
+
 
 }

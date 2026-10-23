@@ -11,7 +11,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 public class FileHandler {
 
     // https://github.com/Ovi/DummyJSON/blob/master/database/recipes.json
-    private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\recipes.json");
+    // private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\recipes.json");
+    private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\Breakfast.json");
+
     private static final ObjectMapper mapper = new ObjectMapper();
 
     //jackson objectmapper
@@ -42,24 +44,49 @@ public class FileHandler {
     }
 
 
-    // find food ingredient
-
-    // public static  List<Recipes> filteringRecipes (String filterPath) {
-    //     List<Recipes> recipes = deserialize();
-    //     List<Recipes> listOfResults = new ArrayList<>();
+    // filtering every items
+    public static  List<Recipes> filteringEveryItems (List<String> AllIngredients) {
+        List<Recipes> recipes = deserialize();
+        List<Recipes> listOfResults = new ArrayList<>();
        
-    //     for (Recipes recipe : recipes ) {
-    //         if (filterPath.equals("1")) {
-    //             if(recipe.getIngredients().containsAll(Allingredients)) {
-    //                 return listOfResults;
-    //             }
-    //         }
-    //     }
+        for (Recipes recipe : recipes) {
+            boolean allRecipeIngredientsFound = true;
+            for (String recipeIngredient : recipe.getIngredients()) {
+                boolean found = false;
+                for (String ingredient : AllIngredients) {
+                    if (recipeIngredient.toLowerCase().contains(ingredient.toLowerCase())) {
+                        found = true;      
+                        break;             
+                    }
+                }
+                if (!found) {
+                    allRecipeIngredientsFound = false;   
+                    break;                              
+                }
+            }
 
-
-
-    // }
-
-
+            if (allRecipeIngredientsFound) {
+                listOfResults.add(recipe);
+            }
+        }
+        return listOfResults;
+    }
+    
+    //filtering thorgh ingredients At least one
+    public static  List<Recipes> filteringAtLeast1 (List<String> AllIngredients) {
+        List<Recipes> recipes = deserialize();
+        List<Recipes> listOfResults = new ArrayList<>();
+       
+        for (Recipes recipe : recipes ) {
+            for (String RecipeIngredient : recipe.getIngredients()) {
+                for (String ingredient : AllIngredients) {
+                    if(RecipeIngredient.toLowerCase().contains(ingredient.toLowerCase())) {
+                    listOfResults.add(recipe);
+                    }   
+                } 
+            }
+        }
+        return listOfResults;
+    }
 
 }

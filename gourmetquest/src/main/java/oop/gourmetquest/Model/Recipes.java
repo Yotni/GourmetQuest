@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"id", "userId", "image", "rating", "reviewCount"})
+@JsonIgnoreProperties({"id", "userId", "image", "rating", "reviewCount", "Url"})
 public class Recipes {
 
     public String name;
@@ -14,7 +14,7 @@ public class Recipes {
     public int cookTimeMinutes;
     public int servings;
     public String difficulty;
-    public String cuisine;
+    public List<String> cuisine;
     public int caloriesPerServing;
     public List<String> tags;
     public List<String> mealType;
@@ -22,7 +22,7 @@ public class Recipes {
     Recipes(){}
 
     Recipes(String name, List<String> ingredients, List<String> instructions, int prepTimeMinutes, int cookTimeMinutes,
-        int servings, String difficulty, String cuisine, int caloriesPerServing, List<String> tags, List<String> mealTypes) {
+        int servings, String difficulty, List<String> cuisine, int caloriesPerServing, List<String> tags, List<String> mealTypes) {
 
             this.name = name;
             this.ingredients = ingredients;
@@ -59,7 +59,7 @@ public class Recipes {
     public String getDifficulty (){
         return difficulty;
     }
-    public String getCuisine (){
+    public List<String> getCuisine (){
         return cuisine;
     }
     public int getCaloriesPerServing(){

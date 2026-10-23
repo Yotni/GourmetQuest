@@ -1,0 +1,638 @@
+[
+{
+"id": 1,
+"name": "Almond Pancakes",
+"ingredients": [
+  "1 cup (150 g / 5.3 oz) bleached all-purpose flour",
+  "2 teaspoons granulated sugar",
+  "½ teaspoon salt",
+  "½ teaspoon baking powder",
+  "¼ teaspoon baking soda",
+  "¾ cup (180 ml / 6.1 oz) buttermilk",
+  "¼ cup (60 ml / 2 oz) milk",
+  "1 egg",
+  "2 tablespoons unsalted butter, melted",
+  "1 teaspoon almond extract",
+  "Vegetable oil for brushing griddle"
+],
+"instructions": [
+  "Heat a large non-stick skillet or griddle over low heat while preparing ingredients.", 
+  "Mix flour, sugar, salt, baking powder, and baking soda in medium bowl.",
+  "Microwave buttermilk and milk in a 2-cup Pyrex measuring cup to room temperature, 20 to 30 seconds.",
+  "Whisk in egg, butter, and almond extract.",
+  "Add wet ingredients to dry ingredients and whisk until just mixed.",
+  "Return batter to measuring cup, stirring in a teaspoon or two of water, if necessary, to make a thick, but pourable batter.",
+  "Increase heat to medium and generously brush skillet or griddle with oil.",
+  "When oil starts to spider, but before it starts to smoke, pour batter, about ¼ cup (60 ml) at a time.", 
+  "Work in batches, if necessary, to avoid overcrowding.", 
+  "When pancake bottoms are golden brown and tops start to bubble, 2 to 3 minutes, flip pancakes.",
+  "Cook until pancakes are golden brown on remaining side.",
+  "Repeat, brushing skillet or griddle with oil.",
+  "Serve hot."
+],
+"prepTimeMinutes": 10,
+"cookTimeMinutes": 5,
+"servings": 8,
+"difficulty": "Easy",
+"cuisine": ["American"],
+"caloriesPerServing": 0,
+"tags": ["North American recipes", "Inexpensive recipes", "Recipes for pancakes"],
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Almond_Pancakes"
+
+},
+{
+"id": 2,
+"name": "Apple Bundt Cake",
+"ingredients": [
+  "2 cups (450 g / 16 oz) white granulated sugar",
+  "Zest of 1 lemon",
+  "4 eggs",
+  "1 cup (250 ml / 8.5 fl oz) vegetable oil",
+  "1 tsp vanilla",
+  "2 cups (275 g / 9.7 oz) flour",
+  "½ tsp allspice",
+  "½ tsp nutmeg",
+  "2 tsp baking powder",
+  "2 tsp baking soda",
+  "1 tsp salt",
+  "1 tsp cinnamon",
+  "3 large tart apples, grated",
+  "½ cup (40 g / 1.4 oz) raisins"
+],
+"instructions": [
+  "Mix quickly the sugar and lemon rind in a food processor.",
+  "Add eggs and blend until it becomes a nice cream.",
+  "Continue blending while slowly adding the oil. Blend until well mixed and add vanilla.",
+  "In a separate bowl sift the dry ingredients all together (flour, allspice, nutmeg, baking powder, baking soda, salt and cinnamon).",
+  "Mix the dry ingredients slowly into the batter, blending until it becomes nice and thick.",
+  "Add grated apples and blend quickly into batter just to mix. Be sure not to overblend and shred the apples too much.",
+  "Add raisins, and pulse the processor as to just mix them in and not shred them.",
+  "Bake in a bundt pan for 55 minutes at approximately 320°F (160°C; gas mark 3) or until a knife inserted into the center comes out clean."
+],
+"prepTimeMinutes": 65,
+"cookTimeMinutes": 55,
+"servings": 12,
+"difficulty": "Easy",
+"cuisine": ["American"],
+"caloriesPerServing": 0,
+"tags": ["Recipes for cake", "Baking recipes", "Recipes using apple"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Apple_Bundt_Cake"
+},
+{
+"id": 3,
+"name": "Apple Raisin Oat Muffins",
+"ingredients": [
+  "1½ cup (360 mL) Whole wheat flour",
+  "1½ cup (360 mL) Rolled oats",
+  "1 Tbsp (15 mL) Baking powder",
+  "½ tsp (2.5 mL) Baking soda",
+  "¼ cup (60 mL) Granulated sugar",
+  "¼ cup (60 mL) Brown sugar",
+  "Whole egg",
+  "1 cup (240 mL) Milk, whole milk or 2%",
+  "⅓ cup (80 mL) Vegetable oil (your favorite is fine)",
+  "2 cup (480 mL) Grated apple (Granny Smith is an excellent choice)",
+  "2 tsp (10 mL) Cinnamon",
+  "½ tsp (2.5 mL) Nutmeg",
+  "½ tsp (2.5 mL) Salt",
+  "1 tsp (5 mL) Vanilla extract",
+  "¼ cup (60 mL) Raisins"
+],
+"instructions": [
+  "Preheat oven to 425°F (220°C).",
+"Grease muffin pans with cold butter, shortening, or pan spray.",
+"In a large bowl, thoroughly combine flour, oats, baking powder and baking soda.",
+"In a smaller bowl, thoroughly combine eggs, sugar, milk, oil, apple, cinnamon, nutmeg, salt, vanilla and raisins.",
+"Add wet ingredients to the dry ingredients and mix with bare hands until just combined. Do not overmix!",
+"Fill muffin cups about three-quarters full, then place on oven's upper rack and turn the oven down to 375°F (190°C).",
+"Rotate muffin pans 180° after 10 minutes; check for doneness after 15 minutes. Muffins usually take 20 to 25 minutes to cook completely.",
+"Allow to cool briefly (2–5 minutes) before removing from pan."
+],
+"prepTimeMinutes": 20,
+"cookTimeMinutes": 25,
+"servings": 21,
+"difficulty": "Medium",
+"cuisine": ["American"],
+"caloriesPerServing": 135 ,
+"tags": [" Medium Difficulty recipes","Recipes using apple", "Recipes for muffins"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Apple_Raisin_Oat_Muffins"
+},
+{
+"id": 4,
+"name": "Bacon Cheese Omelet",
+"ingredients": [
+  "3 eggs",
+  "2 medium (10 oz) slices of cooked bacon",
+  "2 slices of American cheese",
+  "1 Tablespoon of butter"
+ ],
+"instructions": [
+  "Cut or break bacon into 1-inch pieces.",
+  "Cut or break slices of cheese into 1-inch wide strips.",
+  "Melt the butter in a pan over a high heat. Make sure the pan is evenly covered in butter.",
+  "When half the butter is melted, turn the heat to medium.",
+  "Beat or whisk eggs until evenly colored.",
+  "Pour in the eggs, and rotate the pan so that the egg covers the entire surface of the pan.",
+  "Continue rotating until the edges become thick, then use a spatula to lift side of the now cooked egg, allowing the remaining liquid egg from the centre to flow underneath on to the pan and start cooking. Continue to rotate the pan and move the spatula to adjacent areas until most of the liquid egg is cooked.",
+  "Lay the cheese down one side of the centre of the omelette.",
+  "Place the bacon on top of the cheese.",
+  "Carefully, flip the side with no ingredients over the top of the bacon and cheese side, so you now have a semi-circle omelette.",
+  "Turn to low heat until cheese has melted. Makes two servings; great with vegetables or salad."
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 10,
+"servings": 1,
+"difficulty": "Easy",
+"cuisine": ["Global"],
+"caloriesPerServing": 650,
+"tags": ["Naturally gluten-free recipes", "Recipes using egg", "Recipes using bacon"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Bacon_Cheese_Omelet"
+},
+{
+"id": 4,
+"name": "Baking Powder Biscuits",
+"ingredients": [
+  "Flour 2 cups (240 ml)",
+  "Baking powder 1 Tbsp (15 ml)",
+  "Salt ⅓ tsp (2 ml)",
+  "Lard or shortening ⅓ cup (80 ml)",
+  "Milk 1 cup (240 ml) for drop biscuits or ¾ cup (180 ml) for cut biscuits"
+ ],
+"instructions": [
+  "Mix the dry ingredients.",
+  "Cut in the fat, preferably as you would for an apple crisp or traditional pie crust.",
+  "Add the milk, mixing only as needed to wet the dough or batter.",
+  "If doing drop biscuits, plop the batter by large spoonfuls onto a greased or parchment-lined cookie sheet. Otherwise, for cut biscuits:",
+  "Give the dough a quick knead.",
+  "Roll the dough out to ½ inch thick, using flour as needed to avoid sticking.",
+  "Cut circles with a 2.5-inch cookie cutter, or carve hexagons (a honeycomb pattern) with a knife.",
+  "Space the biscuits 1 inch apart on the cookie sheet.",
+  "Bake 10–12 minutes in a 450°F oven, stopping when lightly browned on top.",
+  "Serve hot."
+  ],
+"prepTimeMinutes": 33,
+"cookTimeMinutes": 12,
+"servings": 0,
+"difficulty": "Easy",
+"cuisine": ["United States"],
+"caloriesPerServing": 25,
+"tags": ["Baking recipes", "Biscuit recipes"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Baking_Powder_Biscuits"
+},
+{
+"id": 5,
+"name": "Banana Bread I",
+"ingredients": [
+  "White sugar 1 cup",
+  "Butter, softened ½ cup",
+  "3 Bananas (the riper the better), mashed",
+  "2 Eggs",
+  "All-purpose flour 2 cups",
+  "Baking soda ½ tsp",
+  "Sour milk or buttermilk ⅓ cup",
+  "Salt ¼ tsp",
+  "Vanilla extract 1 tsp"
+ ],
+"instructions": [
+  "Preheat oven to 350°F (175°C).",
+  "Lightly grease an 8 x 4-inch (20 x 10 cm) loaf pan.",
+  "Combine all ingredients into a large mixing bowl. Beat well.",
+  "Pour batter into pan.",
+  "Bake on middle shelf of oven for 60 minutes, or until a toothpick inserted into the center of the loaf comes out clean."
+],
+"prepTimeMinutes": 30,
+"cookTimeMinutes": 60,
+"servings": 1,
+"difficulty": "Easy",
+"cuisine": ["United States"],
+"caloriesPerServing": 0,
+"tags": ["Vegetarian recipes", "Recipes using egg", "Recipes using banana"],
+"image": "",
+"mealType": ["Breakfast", "Dessert"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Banana_Bread_I"
+},
+{
+"id": 6,
+"name": "Banana Chip Muffins",
+"ingredients": [
+  "1 ¾ cup (250 g / 8.8 oz) all-purpose flour",
+  "½ cup (110 g / 3.9 oz) granulated sugar",
+  "1 tablespoon baking powder",
+  "½ cup (40 g / 1.4 oz) semisweet chocolate chips",
+  "1 egg",
+  "¼ cup (60 ml / 2 fl oz) cooking oil",
+  "¼ cup (60 ml / 2 oz) milk",
+  "1 cup (250 g / 8.8 oz / 3 ea.) mashed ripe bananas"
+ ],
+"instructions": [
+  "Measure flour, sugar, baking powder, salt, and chocolate chips into a mixing bowl. Make a well in the center.",
+  "Beat egg in a small mixing bowl until frothy. Mix in cooking oil, milk, and banana.",
+  "Pour into well in flour mixture. Stir just to moisten—the batter will be lumpy.",
+  "Fill greased muffin cups ¾ full. Bake at 400 °F (205 °C) for 15 to 20 minutes."
+],
+"prepTimeMinutes": 10,
+"cookTimeMinutes": 20,
+"servings": 12,
+"difficulty": "Easy",
+"cuisine": ["Global"],
+"caloriesPerServing": 0,
+"tags": ["Recipes using banana", "Recipes for muffins", "Recipes using egg"],
+"image": "",
+"mealType": ["Breakfast", "Dessert"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Banana_Chip_Muffins"
+},
+{
+"id": 7,
+"name": "Banana Nutmeg Pancakes",
+"ingredients": [
+  "1 cup all-purpose bleached flour",
+  "2 teaspoons sugar",
+  "½ teaspoon salt",
+  "½ teaspoon baking powder",
+  "¼ teaspoon baking soda",
+  "½ teaspoon nutmeg",
+  "¾ cup buttermilk",
+  "¼ cup milk",
+  "1 large egg",
+  "2 tablespoon unsalted butter, melted",
+  "1 teaspoon vanilla extract",
+  "Vegetable oil for brushing griddle",
+  "2 small bananas, thinly sliced"
+ ],
+"instructions": [
+  "Heat a large non-stick skillet or griddle over low heat while preparing ingredients.",
+  "Mix flour, sugar, salt, baking powder, and baking soda in medium bowl.",
+  "Whisk nutmeg into dry ingredients.",
+  "Microwave buttermilk and milk in a 2-cup Pyrex measuring cup to room temperature, 20 to 30 seconds.",
+  "Whisk in egg, butter, and vanilla.",
+  "Add wet ingredients to dry ingredients and whisk until just mixed.",
+  "Return batter to measuring cup, stirring in a teaspoon or two of water, if necessary, to make a thick, but pourable batter.",
+  "Increase heat to medium and generously brush skillet or griddle with oil.",
+  "When oil starts to spider, but before it starts to smoke, pour batter, about ¼ cup at a time. Work in batches, if necessary, to avoid overcrowding.",
+  "Drop 5 or 6 slices of banana over the uncooked side of each pancake as it cooks.",
+  "When pancake bottoms are golden brown and tops start to bubble, 2 to 3 minutes, flip pancakes.",
+  "Cook until pancakes are golden brown on remaining side.",
+  "Repeat, brushing skillet or griddle with oil.",
+  "Serve hot."
+],
+"prepTimeMinutes": 10,
+"cookTimeMinutes": 5,
+"servings": 8 ,
+"difficulty": "Easy",
+"cuisine": ["Unconfirmed"],
+"caloriesPerServing": 0,
+"tags": ["Recipes using banana", "Inexpensive recipes", "Recipes for pancakes"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Banana_Nutmeg_Pancakes"
+},
+{
+"id": 8,
+"name": "Basic Scrambled Eggs",
+"ingredients": [
+  "3 eggs",
+  "2–3 tbsp milk (optional)",
+  "2 tbsp butter",
+  "¼ tsp salt (or to taste)",
+  "⅛ tsp black pepper (or to taste)"
+ ],
+"instructions": [
+  "Crack eggs into a measuring cup.",
+  "Add the milk (if desired) and salt.",
+  "Using a whisk or fork, beat the mixture until foamy.",
+  "Melt butter in a frying pan on medium heat.",
+  "Pour eggs into frying pan.",
+  "Stir mixture to break up the egg as it cooks and allow more liquid to touch the hot pan. Stirring rapidly will create small curds, while slower stirring will create larger curds.",
+  "Cook until just before you feel that they are done, since the eggs will continue to cook after being removed from the pan. The eggs are done when the sheen disappears; stop cooking just before this happens.",
+  "Transfer to a plate. Season with black pepper (black pepper will burn and become bitter if seasoned before cooking).",
+  "Eat as is or with ketchup (tomato sauce), salsa, and/or butter on toast."
+],
+"prepTimeMinutes": 5,
+"cookTimeMinutes": 2,
+"servings": 1,
+"difficulty": "Easy",
+"cuisine": ["Global"],
+"caloriesPerServing": 78,
+"tags": ["Recipes using egg"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Basic_Scrambled_Eggs"
+},
+{
+"id": 9,
+"name": "Beer and Rye Bread Porridge (Øllebrød)",
+"ingredients": [
+  "1 loaf of day-old rye bread (preferably without whole grain)",
+  "Malt beer (preferably a sweet dark stout)",
+  "Sweetener, as desired (e.g. sugar or honey)",
+  "Lemon juice (optional)"
+ ],
+"instructions": [
+  "Put the rye bread to soak in beer for 6-12 hours.",
+  "Bring the mixture to a boil, and simmer slowly for about 1 hour. Add more beer if it's too dry; the consistency should be like that of oatmeal. If you want it sweet you can mix in some sweetener. For a fresher taste, add a touch of lemon.",
+  "Serve with whipped cream if you're introducing this meal to someone who is not Danish."
+],
+"prepTimeMinutes": 720,
+"cookTimeMinutes": 20 ,
+"servings": 4,
+"difficulty": "Easy",
+"cuisine": ["Denmark"],
+"caloriesPerServing": 316,
+"tags": ["Recipes using beer"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Beer_and_Rye_Bread_Porridge_(%C3%98llebr%C3%B8d)"
+},
+{
+"id": 10,
+"name": "Biscuits and Gravy",
+"ingredients": [
+  "1 lb (500 g) ground breakfast sausage",
+  "3 tbsp (15 mL) bacon grease",
+  "¼ cup (60 mL) flour",
+  "3 cup (720 mL) milk",
+  "½ tsp (2.5 mL) salt",
+  "¼ tbsp (4 mL) ground black pepper"
+ ],
+"instructions": [
+  "Make 'cut' biscuit dough.",
+  "Place the cut biscuits in the oven when you add the bacon grease to the skillet in the gravy procedure below (step 3).",
+  "Remove from oven after 10 to 12 minutes; the biscuits should be warm when served with the gravy.",
+  "Brown the sausage in a large skillet.",
+  "Remove the browned sausage from the skillet and reserve in a bowl, being careful to leave as much of the drippings as possible in the pan.",
+  "Add the bacon grease to the skillet, and place the skillet on low to medium-low heat.",
+  "Once the bacon grease is up to temperature, mix the flour into the grease.",
+  "Add the milk slowly, mixing as you pour.",
+  "Bring to a gentle boil, stirring constantly scraping the bottom and edges of the skillet. Stirring keeps the gravy from becoming too lumpy or burnt.",
+  "Continue stirring until the gravy has nearly reached the desired consistency, usually about 10 minutes.",
+  "Add the browned sausage held in reserve.",
+  "Remove from heat and allow to set for 1 minute.",
+  "Serve with biscuits."
+],
+"prepTimeMinutes": 15,
+"cookTimeMinutes": 20,
+"servings": 4,
+"difficulty": "Easy",
+"cuisine": ["United States"],
+"caloriesPerServing": 508,
+"tags": ["Recipes using cow milk"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Biscuits_and_Gravy"
+},
+{
+"id": 11,
+"name": "Blueberry Pancakes",
+"ingredients": [
+  "1¾ cup all-purpose flour",
+  "2 Tbsp white granulated sugar",
+  "2 tsp baking soda",
+  "1½ tsp cream of tartar (or baking powder)",
+  "½ tsp salt",
+  "1 tsp cinnamon",
+  "1 tsp nutmeg",
+  "1 tsp vanilla extract",
+  "2 cups buttermilk",
+  "4 eggs, separated",
+  "¼ cup butter (optional)",
+  "1 cup frozen blueberries"
+  ],
+"instructions": [
+  "Sift together flour, sugar, baking powder, cream of tartar, salt, cinnamon and nutmeg. Set aside.",
+  "Whisk together buttermilk, butter and egg yolks in a large bowl. Mix flour mixture into buttermilk mixture. Mix in blueberries.",
+  "Whip egg whites in a small bowl until stiff, but do not let dry peaks form. Fold into pancake batter.",
+  "Heat a large pan or griddle over medium heat. Lightly spray or brush with vegetable oil. Ladle in a ¼ cup of batter for each pancake; cook until set and bubbly on the top. Turn pancake over, then cook for 1 more minute.",
+  "Serve warm with whatever topping you prefer."
+],
+"prepTimeMinutes": 15,
+"cookTimeMinutes": 15,
+"servings": 6,
+"difficulty": "Easy",
+"cuisine": ["United States"],
+"caloriesPerServing": 350,
+"tags": ["Recipes for pancakes"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Blueberry_Pancakes"
+},
+{
+"id": 12,
+"name": "Bran Muffins",
+"ingredients": [
+  "1 cup (240 ml) natural wheat bran",
+  "¾ cup (180 ml) cultured buttermilk",
+  "1 egg",
+  "2 tablespoons margarine",
+  "1 cup (240 ml) all-purpose flour",
+  "1 teaspoon baking powder",
+  "½ teaspoon baking soda",
+  "½ teaspoon salt",
+  "½ cup (120 ml) brown sugar"
+ ],
+"instructions": [
+  "Stir wheat bran and buttermilk together in a mixing bowl.",
+  "Cream together egg, brown sugar and margarine in another mixing bowl.",
+  "Combine remaining ingredients in a third bowl. Add to batter, and stir just to moisten.",
+  "Fill muffin cups ¾ full.",
+  "Bake at 400°F (200°C) for 15 to 20 minutes."
+],
+"prepTimeMinutes": 10,
+"cookTimeMinutes": 20,
+"servings": 12,
+"difficulty": "Easy",
+"cuisine": ["American"],
+"caloriesPerServing": 222,
+"tags": ["Recipes for muffins", "Baking recipes"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Bran_Muffins"
+},
+{
+"id": 13,
+"name": "Breakfast Burrito",
+"ingredients": [
+  "8 eggs either scrambled, sunny-side up, or poached",
+  "4 large flour burrito skins",
+  "8 strips of cooked bacon or 1 lb (400 grams) cooked breakfast sausage",
+  "1 full order of hash browns",
+  "Hollandaise sauce, cheese, salt, and pepper to taste"
+ ],
+"instructions": [
+  "Place one-quarter of the hash browns in a tortilla.",
+  "On top of this place 2 strips of bacon or one quarter of the breakfast sausage.",
+  "Add two eggs, cheese, salt, and pepper.",
+  "Roll up the tortilla to enclose everything. If you used poached or sunny-side up eggs you can squeeze the burritos to pop the egg yolks and then work the yolk around to form a sauce."
+],
+"prepTimeMinutes": 15,
+"cookTimeMinutes": 20,
+"servings": 4,
+"difficulty": "Easy",
+"cuisine": ["United States"],
+"caloriesPerServing": 838,
+"tags": ["Recipes using egg", "Recipes using bacon"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Breakfast_Burrito"
+},
+{
+"id": 14,
+"name": "Breakfast Casserole",
+"ingredients": [
+  "5 small sausage links, cooked and finely chopped",
+  "4 standard eggs, beaten",
+  "½ tsp salt",
+  "½ tsp freshly-ground black pepper",
+  "2 cups finely-crumbled cornbread",
+  "1 cup ricotta cheese",
+  "1 cup shredded Monterrey Jack cheese",
+  "¼ cup unsalted butter",
+  "8 slices cooked bacon, crumbled",
+  "½ cup dry breadcrumbs"
+ ],
+"instructions": [
+  "Combine sausage and bacon. In another bowl, combine ricotta, eggs, butter, salt, pepper, and cornbread.",
+  "In a greased large roasting pan, place just enough cornbread mixture to cover the bottom. Add just enough meat mixture to cover that layer, and repeat the layering until all mixtures have been used.",
+  "Combine Monterey Jack and breadcrumbs. Sprinkle evenly over layers and bake at 375°F (190°C) for 30–35 minutes or until browned and bubbly on top.",
+  "Serve warm."
+  ],
+"prepTimeMinutes": 20,
+"cookTimeMinutes": 35,
+"servings": 8,
+"difficulty": "Easy",
+"cuisine": ["United States", "European"],
+"caloriesPerServing": 495,
+"tags": ["Recipes using egg", "Recipes using bacon"],
+"image": "",
+"mealType": ["Breakfast"],
+"Url": "https://en.wikibooks.org/wiki/Cookbook:Breakfast_Casserole"
+},
+{
+"id": 15,
+"name": "",
+"ingredients": [
+
+ ],
+"instructions": [
+
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 0,
+"servings": 0,
+"difficulty": "",
+"cuisine": [""],
+"caloriesPerServing": 0,
+"tags": [""],
+"image": "",
+"mealType": [""],
+"Url": ""
+},
+{
+"id": 0,
+"name": "",
+"ingredients": [
+
+ ],
+"instructions": [
+
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 0,
+"servings": 0,
+"difficulty": "",
+"cuisine": [""],
+"caloriesPerServing": 0,
+"tags": [""],
+"image": "",
+"mealType": [""],
+"Url": ""
+},
+{
+"id": 0,
+"name": "",
+"ingredients": [
+
+ ],
+"instructions": [
+
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 0,
+"servings": 0,
+"difficulty": "",
+"cuisine": [""],
+"caloriesPerServing": 0,
+"tags": [""],
+"image": "",
+"mealType": [""],
+"Url": ""
+},
+{
+"id": 0,
+"name": "",
+"ingredients": [
+
+ ],
+"instructions": [
+
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 0,
+"servings": 0,
+"difficulty": "",
+"cuisine": [""],
+"caloriesPerServing": 0,
+"tags": [""],
+"image": "",
+"mealType": [""],
+"Url": ""
+},
+{
+"id": 0,
+"name": "",
+"ingredients": [
+
+ ],
+"instructions": [
+
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 0,
+"servings": 0,
+"difficulty": "",
+"cuisine": [""],
+"caloriesPerServing": 0,
+"tags": [""],
+"image": "",
+"mealType": [""],
+"Url": ""
+},
+{
+"id": 0,
+"name": "",
+"ingredients": [
+
+ ],
+"instructions": [
+
+],
+"prepTimeMinutes": 0,
+"cookTimeMinutes": 0,
+"servings": 0,
+"difficulty": "",
+"cuisine": [""],
+"caloriesPerServing": 0,
+"tags": [""],
+"image": "",
+"mealType": [""],
+"Url": ""
+}
+]

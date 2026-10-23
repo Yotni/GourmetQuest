@@ -6,7 +6,7 @@ import java.util.*;
 
 
 public class GourmetQuest {
-    
+
     public static final Scanner scanner = new Scanner(System.in);
     public static final Produced produced = new Produced();
     public static final MeatProduct meatProduct = new MeatProduct();
@@ -14,53 +14,11 @@ public class GourmetQuest {
     public static final Dairy dairy = new Dairy();
     public static final OilCondiments oilCondiments = new OilCondiments();
 
-    void SearchName(){
-        while (true) {
-            System.out.println("-".repeat(150));
-            System.out.print("Search[X to Exit]: ");
-            String Search = scanner.nextLine();
-
-            if (Search.equalsIgnoreCase("X"))
-                return;
-            else{
-                List<Recipes> listOfResults = FileHandler.SearchingName(Search);
-                if (listOfResults.isEmpty()) {
-                    App.clearScreen();
-                    System.out.println("Food not found!\n");  
-                }   
-                else {
-                    while (true) {
-                        int count = 1;
-                        System.out.println("Found " + listOfResults.size() + " recipes for " + Search);
-                        for(Recipes Item : listOfResults){
-                            System.out.println("-".repeat(150));
-                            System.out.println(count + " -- " + Item.getName());
-                            count++;
-                        } 
-                        System.out.println("-".repeat(30));
-                        System.out.print("Enter a number to view the recipe or type S to save to save a recipe[X to Exit]: ");
-                        String PickARecipe = scanner.nextLine();
-                        if (PickARecipe.equalsIgnoreCase("X")) {
-                            break;
-                        }
-                        else if (PickARecipe.equalsIgnoreCase("S")) {
-                            System.out.println();
-                        }
-                        else {
-                            Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                            System.out.println("-".repeat(150));
-                            selectedItem.DisplayFood();
-                        }                        
-                    }
-                }  
-            }
-        }
-    }
     void filterIngredients(){
         // System.out.println();
         ingredientSearch: while (true) {
             App.clearScreen();
-            System.out.println("Total Grabbed Ingredients: " + getTotalIngredients());
+            System.out.println("Total Grabbed Ingredients: " + getTotalIngredients().size());
             System.out.println("Search recipes through filtering[X to Exit]: ");
             System.out.println("[1] Produced");
             System.out.println("[2] Meat Products");
@@ -105,8 +63,29 @@ public class GourmetQuest {
                     break;
             }
         }
-    }
+    }   
+    
+    void SearchName(){
+        while (true) {
+            System.out.println("-".repeat(150));
+            System.out.print("Search[X to Exit]: ");
+            String Search = scanner.nextLine();
 
+            if (Search.equalsIgnoreCase("X"))
+                return;
+            else{
+                List<Recipes> listOfResults = FileHandler.SearchingName(Search);
+                if (listOfResults.isEmpty()) {
+                    App.clearScreen();
+                    System.out.println("Food not found!\n");  
+                }   
+                else {
+                    System.out.println("Found " + listOfResults.size() + " recipes for " + Search);
+                    OutpurAndSaveItem(listOfResults);
+                }  
+            }
+        }
+    }
     //filteringredients methods:
     protected void applyFilters() {
         filtering : while (true) {
@@ -121,20 +100,43 @@ public class GourmetQuest {
             }
             
             else {
-                // FileHandler.filteringRecipes(filterPath);
+                List<Recipes> listOfResults = new ArrayList<> ();
+                List<String> AllIngredients = getTotalIngredients();
+                switch (filterPath) {
+                    case "1":
+                        listOfResults = FileHandler.filteringEveryItems(AllIngredients);
+                        break;
+                    case "2":
+                        listOfResults = FileHandler.filteringAtLeast1(AllIngredients);
+                        break;
+                
+                    default:
+                        break;
+                }
+
+                if (listOfResults.isEmpty()) {
+                    App.clearScreen();
+                    System.out.println("Food not found!\n");  
+                }   
+                else {
+                    if (filterPath.equals("1")) {
+                        System.out.println("Found " + listOfResults.size() + " recipes for All Ingredients");
+                    }
+                    else if (filterPath.equals("2")) {
+                        System.out.println("Found " + listOfResults.size() + " recipes for Any Ingredients");
+                    }
+
+                    OutpurAndSaveItem(listOfResults);
+                }
             }
-
-
-
-
-
         }
 
 
 
     }
 
-    public int getTotalIngredients() {
+    // put every ingredients to one list only for filtering and counting
+    private List<String> getTotalIngredients() {
         List<String> Basket1 = produced.getVegetables();
         List<String> Basket2 = produced.getFruits();
         List<String> Basket3 = meatProduct.getLandMeats();
@@ -151,17 +153,42 @@ public class GourmetQuest {
         List<String> Basket14 = dairy.getButters();
 
         
-        List<List<String>> Baskets = List.of(Basket1, Basket2, Basket3, Basket4, Basket5, 
+        List<List<String>> allIngredients = List.of(Basket1, Basket2, Basket3, Basket4, Basket5, 
                                             Basket6, Basket7, Basket8, Basket9, Basket10, 
                                             Basket11, Basket12, Basket13, Basket14);
 
-        int TotalBasket = 0;
+        List<String> TotalBasket = new ArrayList<>();
 
-        for (int i = 0; i < Baskets.size(); i++) {
-            TotalBasket += Baskets.get(i).size();
+        for (List<String> ingredient : allIngredients) {
+            TotalBasket.addAll(ingredient);
         }
 
         return TotalBasket;
     
+    }
+    // for putting recipes and deciding if to save or not
+    private String OutpurAndSaveItem (List<Recipes> listOfResults) {
+        while (true) {
+            int count = 1;
+            for(Recipes Item : listOfResults){
+                System.out.println("-".repeat(150));
+                System.out.println(count + " -- " + Item.getName());
+                count++;
+            } 
+            System.out.println("-".repeat(30));
+            System.out.print("Enter a number to view the recipe or type S to save to save a recipe[X to Exit]: ");
+            String PickARecipe = scanner.nextLine();
+            if (PickARecipe.equalsIgnoreCase("X")) {
+                return "";
+            }
+            else if (PickARecipe.equalsIgnoreCase("S")) {
+                return "S";
+            }
+            else {
+                Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
+                System.out.println("-".repeat(150));
+                selectedItem.DisplayFood();
+            }                        
+        }
     }
 }

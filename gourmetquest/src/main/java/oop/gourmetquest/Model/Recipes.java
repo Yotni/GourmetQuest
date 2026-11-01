@@ -4,20 +4,20 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"id", "userId", "image", "rating", "reviewCount", "Url"})
+@JsonIgnoreProperties({"id", "image", "Url"})
 public class Recipes {
 
-    public String name;
-    public List<String> ingredients;
-    public List<String> instructions;
-    public int prepTimeMinutes;
-    public int cookTimeMinutes;
-    public int servings;
-    public String difficulty;
-    public List<String> cuisine;
-    public int caloriesPerServing;
-    public List<String> tags;
-    public List<String> mealType;
+    private  String name;
+    private List<String> ingredients;
+    private List<String> instructions;
+    private int prepTimeMinutes;
+    private int cookTimeMinutes;
+    private int servings;
+    private String difficulty;
+    private List<String> cuisine;
+    private int caloriesPerServing;
+    private List<String> tags;
+    private List<String> mealType;
 
     Recipes(){}
 

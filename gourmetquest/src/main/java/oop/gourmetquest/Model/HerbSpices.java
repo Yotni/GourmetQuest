@@ -15,8 +15,8 @@ public class HerbSpices extends FoodCategories {
 
 
     public HerbSpices() {
-        herbs = new ArrayList<> ();
-        spices = new ArrayList<> ();
+        this.herbs = new ArrayList<> ();
+        this.spices = new ArrayList<> ();
     }
 
 

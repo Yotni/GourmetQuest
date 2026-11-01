@@ -24,8 +24,8 @@ public class Produced extends FoodCategories {
     List<String> Fruits;
     
     public Produced () {
-        Vegetables = new ArrayList<> ();
-        Fruits = new ArrayList<> ();
+        this.Vegetables = new ArrayList<> ();
+        this.Fruits = new ArrayList<> ();
     }
 
     @Override

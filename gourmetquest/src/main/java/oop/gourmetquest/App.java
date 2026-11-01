@@ -1,10 +1,17 @@
 package oop.gourmetquest;
 
+import java.io.File;
 import java.util.*;
+import java.util.logging.FileHandler;
+
+import oop.gourmetquest.Model.Recipes;
 
 public class App {
     public static final Scanner scanner = new Scanner(System.in);
     public static final GourmetQuest gourmetQuest = new GourmetQuest();
+    private static final File FilePathSaving = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\SavedRecipes.json");
+
+
     public static void main( String[] args ){
         
         while(true){
@@ -23,7 +30,7 @@ public class App {
                     searchRecipes();
                     break;
                 case "2":
-                    
+                    SavedRecipes();
                     break;
                 case "3":
 
@@ -65,6 +72,72 @@ public class App {
         }
 
     }
+
+    // nigga my error dindi dahil sa [] nung save json file if wala nun di makaka save if meron nun di gaga na filepath....length == 0 sionce it is not zero i thinl
+    private static void SavedRecipes() {
+    
+        clearScreen();
+        savedrecipes : while (true) {
+            System.out.println("Recipes You have saved [Type TD to put it into to do list]: ");
+
+            if(!FilePathSaving.exists()) {
+                System.out.println("Could not find file path for Saving!");
+                break savedrecipes;
+            }
+
+            List<Recipes> listOfResults = oop.gourmetquest.DataHandler.FileHandler.deserialize(FilePathSaving);
+
+            if (listOfResults.isEmpty()) {
+                System.out.println("Your saved recipes is empty!");
+            }
+            else {
+                oop.gourmetquest.DataHandler.FileHandler.outputRecipes(listOfResults);
+
+            }
+
+            System.out.println("-".repeat(30));
+                System.out.print("Choose a recipe to view[X to Exit]: ");
+                String PickARecipe = scanner.nextLine();
+
+                if (PickARecipe.equalsIgnoreCase("X")) {
+                    break savedrecipes;
+                }
+                if (listOfResults.isEmpty()) {
+                    System.out.println("-".repeat(150));
+                    System.out.println("You cannot choose if you dont have a choice at all!");
+                    System.out.println("-".repeat(150));
+                }
+                else if (PickARecipe.equalsIgnoreCase("TD")) {
+                    // gourmetQuest.SearchName();
+                }
+                else {
+                    Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
+                    System.out.println("-".repeat(150));
+                    selectedItem.DisplayFood(); 
+                }            
+
+        }
+
+    }
+
+    private static void RandomRecipes () {
+        System.out.println("Choose a meal type: ");
+        System.out.println("[1] Breakfast");
+        System.out.println("[2] Lunch");
+        System.out.println("[4] Dessert ");
+        System.out.println("[5] Appetizer");
+        System.out.print("Choose Your Path: ");
+
+        int pickrandomRecipe = scanner.nextInt();
+
+
+    }
+
+
+
+
+
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

@@ -3,6 +3,7 @@ import  oop.gourmetquest.Model.*;
 import  oop.gourmetquest.DataHandler.*;
 
 import java.util.*;
+import java.lang.*;
 
 
 public class GourmetQuest {
@@ -49,7 +50,7 @@ public class GourmetQuest {
                     break;
 
                 case "6":
-
+                    removedIngredients();
                     break;
 
                 case "7":
@@ -67,6 +68,7 @@ public class GourmetQuest {
     
     void SearchName(){
         while (true) {
+            App.clearScreen();
             System.out.println("-".repeat(150));
             System.out.print("Search[X to Exit]: ");
             String Search = scanner.nextLine();
@@ -76,18 +78,79 @@ public class GourmetQuest {
             else{
                 List<Recipes> listOfResults = FileHandler.SearchingName(Search);
                 if (listOfResults.isEmpty()) {
-                    App.clearScreen();
                     System.out.println("Food not found!\n");  
                 }   
                 else {
                     System.out.println("Found " + listOfResults.size() + " recipes for " + Search);
-                    OutpurAndSaveItem(listOfResults);
+                    OutputAndSaveItem(listOfResults);
                 }  
             }
         }
     }
+
+    private void removedIngredients () {
+        App.clearScreen();
+        while (true) {
+            System.out.println("Remove an ingredient from which category[X to Exit]: ");
+            System.out.println("[1] Produced");
+            System.out.println("[2] Meat Products");
+            System.out.println("[3] Herb and Spices");
+            System.out.println("[4] Oil and Condiments");
+            System.out.println("[5] Dairy");
+            System.out.print("Choose Your Path: ");
+
+            String ingredientsPick = scanner.nextLine();
+
+            if (ingredientsPick.equalsIgnoreCase("1")) {
+                System.out.println("Your Ingredients in Produced: ");
+                List<String> Basket1 = produced.getVegetables();
+                List<String> Basket2 = produced.getFruits();
+                List<String> totalBasketsByCategory = combineBaskets(Basket1, Basket2);
+                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+            }
+            else if (ingredientsPick.equalsIgnoreCase("2")) {
+                System.out.println("Your Ingredients in Meats: ");
+                List<String> Basket3 = meatProduct.getLandMeats();
+                List<String> Basket4 = meatProduct.getFishes();
+                List<String> Basket5 = meatProduct.getProcessedMeats();
+                List<String> totalBasketsByCategory = combineBaskets(Basket3, Basket4, Basket5);
+                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+            }
+            else if (ingredientsPick.equalsIgnoreCase("3")) {
+                System.out.println("Your Ingredients in Herbs and Spices: ");
+                List<String> Basket6 = herbSpices.getSpices();
+                List<String> Basket7 = herbSpices.getHerbs();
+                List<String> totalBasketsByCategory = combineBaskets(Basket6, Basket7);
+                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+            }
+            else if (ingredientsPick.equalsIgnoreCase("4")) {
+                System.out.println("Your Ingredients in Condiments and Sauce: ");
+                List<String> Basket8 = oilCondiments.getCondiments();
+                List<String> Basket9 = oilCondiments.getSauces();
+                List<String> Basket10 = oilCondiments.getOils();
+                List<String> totalBasketsByCategory = combineBaskets(Basket8, Basket9, Basket10);
+                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+            }
+            else if (ingredientsPick.equalsIgnoreCase("4")) { 
+                System.out.println("Your Ingredients in Dairy: ");
+                List<String> Basket11 = dairy.getMilks();
+                List<String> Basket12= dairy.getCheeses();
+                List<String> Basket13 = dairy.getCreams();
+                List<String> Basket14 = dairy.getButters();
+                List<String> totalBasketsByCategory = combineBaskets(Basket11, Basket12, Basket13, Basket14);
+                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+            }
+        }
+    }
+
+
+
+
+
+
+
     //filteringredients methods:
-    protected void applyFilters() {
+    private void applyFilters() {
         filtering : while (true) {
             App.clearScreen();
             System.out.println("How Do you want to filter[X to Exit]: ");
@@ -126,12 +189,72 @@ public class GourmetQuest {
                         System.out.println("Found " + listOfResults.size() + " recipes for Any Ingredients");
                     }
 
-                    OutpurAndSaveItem(listOfResults);
+                    OutputAndSaveItem(listOfResults);
                 }
             }
         }
 
 
+
+    }
+
+    // for putting recipes and deciding if to save or not
+    private String OutputAndSaveItem (List<Recipes> listOfResults) {
+        while (true) {
+            FileHandler.outputRecipes(listOfResults);
+            
+            System.out.println("-".repeat(30));
+            System.out.print("Enter a number to view the recipe or type S to save to save a recipe[X to Exit]: ");
+            String PickARecipe = scanner.nextLine();
+            if (PickARecipe.equalsIgnoreCase("X")) {
+                return "";
+            }
+            else if (PickARecipe.equalsIgnoreCase("S")) {
+                SavingRecipes(listOfResults);
+            }
+            else {
+                try {
+                    Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
+                    System.out.println("-".repeat(150));
+                    selectedItem.DisplayFood(); 
+                    System.out.println("-".repeat(150));
+                } catch (IndexOutOfBoundsException  e) {
+                    System.out.println("Error: " + e.getMessage());
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: " + e.getMessage());
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+            }             
+        }
+    }
+
+    private void SavingRecipes (List<Recipes> listOfResults) {
+        Recipes selectedItem;
+        while (true) {
+            System.out.print("Which Recipe do you want to save [X to Exit]: ");
+            String PickARecipe = scanner.nextLine();
+
+            if (PickARecipe.equalsIgnoreCase("x")) {
+                break;
+            }
+            else {
+                try {
+                    selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
+                    FileHandler.serialize(selectedItem);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Error: " + e.getMessage());
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: " + e.getMessage());
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }    
+                
+            }
+
+            
+            
+        }
 
     }
 
@@ -165,30 +288,19 @@ public class GourmetQuest {
 
         return TotalBasket;
     
+
     }
-    // for putting recipes and deciding if to save or not
-    private String OutpurAndSaveItem (List<Recipes> listOfResults) {
-        while (true) {
-            int count = 1;
-            for(Recipes Item : listOfResults){
-                System.out.println("-".repeat(150));
-                System.out.println(count + " -- " + Item.getName());
-                count++;
-            } 
-            System.out.println("-".repeat(30));
-            System.out.print("Enter a number to view the recipe or type S to save to save a recipe[X to Exit]: ");
-            String PickARecipe = scanner.nextLine();
-            if (PickARecipe.equalsIgnoreCase("X")) {
-                return "";
-            }
-            else if (PickARecipe.equalsIgnoreCase("S")) {
-                return "S";
-            }
-            else {
-                Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                System.out.println("-".repeat(150));
-                selectedItem.DisplayFood();
-            }                        
+    @SafeVarargs
+    public final List<String> combineBaskets(List<String>... baskets) {
+
+    List<String> totalBasketsByCategory  = new ArrayList<>();
+
+    for (List<String>  basket : baskets) {
+        for (String player : basket) {
+            totalBasketsByCategory.add(player);
         }
     }
+
+    return totalBasketsByCategory;
+}
 }

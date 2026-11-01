@@ -22,9 +22,9 @@ public class OilCondiments extends FoodCategories {
 
     
     public OilCondiments () {
-        condiments = new ArrayList<> ();
-        sauces = new ArrayList<> ();
-        oils = new ArrayList<> ();
+        this.condiments = new ArrayList<> ();
+        this.sauces = new ArrayList<> ();
+        this.oils = new ArrayList<> ();
     }
 
 

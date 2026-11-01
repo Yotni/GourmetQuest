@@ -22,10 +22,10 @@ public class Dairy extends FoodCategories{
 
     
     public Dairy () {
-        milks = new ArrayList<> ();
-        cheeses = new ArrayList<> ();
-        creams = new ArrayList<> ();
-        butters = new ArrayList<> ();
+        this.milks = new ArrayList<> ();
+        this.cheeses = new ArrayList<> ();
+        this.creams = new ArrayList<> ();
+        this.butters = new ArrayList<> ();
     }
 
 

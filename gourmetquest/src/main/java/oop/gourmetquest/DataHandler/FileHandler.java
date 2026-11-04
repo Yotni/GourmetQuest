@@ -13,7 +13,7 @@ public class FileHandler {
 
     // https://github.com/Ovi/DummyJSON/blob/master/database/recipes.json
     // private static final File FilePath = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\recipes.json");
-    private static final File FilePathRecipes = new File("C:C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\Breakfast.json");
+    private static final File FilePathRecipes = new File("C:\\Users\\ASUS\\Documents\\2nd year advance study\\GourmetQuest\\gourmetquest\\src\\main\\Data\\Breakfast.json");
     private static final File FilePathSaving = new File("C:gourmetquest\\src\\main\\Data\\SavedRecipes.json");
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -130,8 +130,10 @@ public class FileHandler {
         return listOfResults;
     }
 
-    public static void findIngredientsToDelete() {
-        
+    public static void findIngredientsToDelete(String ingredientCategory, String ingredienttoRemoved) {
+        if (ingredientCategory.equals("1")) {
+
+        }
     }
     
 

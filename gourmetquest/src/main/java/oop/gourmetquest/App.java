@@ -2,7 +2,6 @@ package oop.gourmetquest;
 
 import java.io.File;
 import java.util.*;
-import java.util.logging.FileHandler;
 
 import oop.gourmetquest.Model.Recipes;
 
@@ -13,19 +12,19 @@ public class App {
 
 
     public static void main( String[] args ){
-        
+
         while(true){
             System.out.println("Gourmet Quest: Search A food that will change your Life!");
             System.out.println("[1] Search recipes");
             System.out.println("[2] Saved Recipes");
             System.out.println("[3] To do List");
-            System.out.println("[3] What can I cook? [Random Recipes]");
-            System.out.println("[4] Exit");
+            System.out.println("[4] What can I cook? [Random Recipes]");
+            System.out.println("[5] Exit");
             System.out.print("Choose Your Path: ");
             
             String FoodPath = scanner.nextLine();
 
-            switch (FoodPath) {
+            switch (FoodPath.toLowerCase()) {
                 case "1":
                     searchRecipes();
                     break;
@@ -33,13 +32,15 @@ public class App {
                     SavedRecipes();
                     break;
                 case "3":
-
+                    //toDoList();
                     break;
                 case "4":
+                    //RandomRecipes();
+                    break;
+                case "x":
                     System.out.println("\nUntil we meet again traveler\n");
                     programmedClosed();
                 default:
-                    clearScreen();
                     invalidInput();
                     continue;
 
@@ -49,8 +50,8 @@ public class App {
     }
 
     private static void searchRecipes() {
+        clearScreen();
         searchRecipes : while (true) {
-            clearScreen();
             System.out.println("How do you want to search[X to exit]:");
             System.out.println("[1] Search through name");
             System.out.println("[2] Search through filtering");
@@ -62,9 +63,11 @@ public class App {
                 }
                 if (SearchPath.equalsIgnoreCase("1")) {
                     gourmetQuest.SearchName();
+                    clearScreen();
                 }
                 else if (SearchPath.equalsIgnoreCase("2")) {
                     gourmetQuest.filterIngredients();
+                    clearScreen();
                 }
                 else {
                     invalidInput();
@@ -120,18 +123,18 @@ public class App {
 
     }
 
-    private static void RandomRecipes () {
-        System.out.println("Choose a meal type: ");
-        System.out.println("[1] Breakfast");
-        System.out.println("[2] Lunch");
-        System.out.println("[4] Dessert ");
-        System.out.println("[5] Appetizer");
-        System.out.print("Choose Your Path: ");
+    // private static void RandomRecipes () {
+    //     System.out.println("Choose a meal type: ");
+    //     System.out.println("[1] Breakfast");
+    //     System.out.println("[2] Lunch");
+    //     System.out.println("[4] Dessert ");
+    //     System.out.println("[5] Appetizer");
+    //     System.out.print("Choose Your Path: ");
 
-        int pickrandomRecipe = scanner.nextInt();
+    //     int pickrandomRecipe = scanner.nextInt();
 
 
-    }
+    // }
 
 
 
@@ -143,7 +146,9 @@ public class App {
         System.out.flush();
     }
     public static void invalidInput() {
-        System.out.println("Input is invalid!\n");
+        clearScreen();
+        System.out.println("Input is invalid!");
+        System.out.println("-".repeat(150));
 
     }
     public static void programmedClosed(){

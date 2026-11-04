@@ -10,4 +10,16 @@
   "caloriesPerServing" : 190,
   "tags" : [ "Pan fried recipes", "Recipes using egg" ],
   "mealType" : [ "Breakfast", "Lunch", "Dinner" ]
+}, {
+  "name" : "Ginger Pancakes",
+  "ingredients" : [ "1 cup all-purpose bleached flour", "2 teaspoons sugar", "½ teaspoon salt", "½ teaspoon baking powder", "¼ teaspoon baking soda", "1 teaspoon ground ginger", "¾ cup buttermilk", "¼ cup milk", "1 large egg", "2 tablespoon unsalted butter, melted", "1 teaspoon vanilla extract", "Vegetable oil for brushing griddle", "½ cup finely-chopped crystallized ginger" ],
+  "instructions" : [ "Heat a large non-stick skillet or griddle over low heat while preparing ingredients.", "Mix flour, sugar, salt, baking powder, and baking soda in medium bowl.", "Whisk ground ginger into dry ingredients.", "Microwave buttermilk and milk in a 2-cup Pyrex measuring cup for 20-30 seconds until it is room temperature. Whisk in egg, butter, and vanilla.", "Add wet ingredients to dry ingredients and whisk until just mixed.", "Return batter to measuring cup, stirring in a teaspoon or two of water, if necessary, to make a thick, but pourable batter.", "Increase heat to medium and generously brush skillet or griddle with oil.", "When oil starts to spider, but before it starts to smoke, pour in dollops of batter, about ¼ cup at a time. Work in batches, if necessary, to avoid overcrowding.", "Sprinkle 1 tablespoon crystallized ginger over the uncooked side of each pancake as it cooks.", "When pancake bottoms are golden brown and tops start to bubble (2-3 minutes), flip pancakes.", "Cook until pancakes are golden brown on remaining side.", "Repeat cooking with remaining batter, brushing skillet or griddle with oil between batches.", "Serve hot." ],
+  "prepTimeMinutes" : 10,
+  "cookTimeMinutes" : 5,
+  "servings" : 8,
+  "difficulty" : "Easy",
+  "cuisine" : [ "Global" ],
+  "caloriesPerServing" : 375,
+  "tags" : [ "Inexpensive recipes", "Recipes for pancakes", "Vegetarian recipes" ],
+  "mealType" : [ "Breakfast" ]
 } ]

@@ -5,10 +5,6 @@ import java.util.*;
 
 public abstract class FoodCategories {
 
-    // protected String IngredientName;
-    // protected String CategoriesPath;
-    // protected FoodItems getName;
-
     public static final Scanner scanner = new Scanner(System.in);
     protected List<String> ingredientList;
     
@@ -25,12 +21,12 @@ public abstract class FoodCategories {
     public void gatheringIngredients (String ingredientPath, List<String> ingredientList) {
         gathering : while (true) {
             System.out.print("\nGather a Produced [X to Exit]:  ");
-            String gatherHerbsSpices = scanner.nextLine();
+            String gatherIngredients = scanner.nextLine();
 
-            if (gatherHerbsSpices.equalsIgnoreCase("x")) {
+            if (gatherIngredients.equalsIgnoreCase("x")) {
                 break gathering;
             }
-            String ingredient = PutIngredientToList(gatherHerbsSpices, ingredientList);
+            String ingredient = PutIngredientToList(gatherIngredients, ingredientList);
 
             if (ingredient.isEmpty()){
                 continue;
@@ -39,7 +35,6 @@ public abstract class FoodCategories {
         }
     }
 
-    // method for gatheringIngredients
     
 
     public String PutIngredientToList (String pickIngredients, List<String> ingredientList) {

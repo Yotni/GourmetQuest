@@ -103,8 +103,5 @@ public class Recipes {
             j++;
         }
     }
-
-
-    
 }
 

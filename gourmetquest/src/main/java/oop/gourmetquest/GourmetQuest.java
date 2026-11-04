@@ -3,8 +3,6 @@ import  oop.gourmetquest.Model.*;
 import  oop.gourmetquest.DataHandler.*;
 
 import java.util.*;
-import java.lang.*;
-
 
 public class GourmetQuest {
 
@@ -16,7 +14,6 @@ public class GourmetQuest {
     public static final OilCondiments oilCondiments = new OilCondiments();
 
     void filterIngredients(){
-        // System.out.println();
         ingredientSearch: while (true) {
             App.clearScreen();
             System.out.println("Total Grabbed Ingredients: " + getTotalIngredients().size());
@@ -67,8 +64,8 @@ public class GourmetQuest {
     }   
     
     void SearchName(){
+        App.clearScreen();
         while (true) {
-            App.clearScreen();
             System.out.println("-".repeat(150));
             System.out.print("Search[X to Exit]: ");
             String Search = scanner.nextLine();
@@ -78,11 +75,14 @@ public class GourmetQuest {
             else{
                 List<Recipes> listOfResults = FileHandler.SearchingName(Search);
                 if (listOfResults.isEmpty()) {
-                    System.out.println("Food not found!\n");  
+                    App.clearScreen();
+                    System.out.println("Food not found!");
+                    System.out.println("-".repeat(150));
                 }   
                 else {
                     System.out.println("Found " + listOfResults.size() + " recipes for " + Search);
                     OutputAndSaveItem(listOfResults);
+                    App.clearScreen();
                 }  
             }
         }
@@ -91,6 +91,7 @@ public class GourmetQuest {
     private void removedIngredients () {
         App.clearScreen();
         while (true) {
+            List<String> totalBasketsByCategory = null;
             System.out.println("Remove an ingredient from which category[X to Exit]: ");
             System.out.println("[1] Produced");
             System.out.println("[2] Meat Products");
@@ -101,35 +102,36 @@ public class GourmetQuest {
 
             String ingredientsPick = scanner.nextLine();
 
+            if (ingredientsPick.equalsIgnoreCase("x")) {
+                break;
+            }
+
             if (ingredientsPick.equalsIgnoreCase("1")) {
                 System.out.println("Your Ingredients in Produced: ");
                 List<String> Basket1 = produced.getVegetables();
                 List<String> Basket2 = produced.getFruits();
-                List<String> totalBasketsByCategory = combineBaskets(Basket1, Basket2);
-                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+                totalBasketsByCategory = combineBaskets(Basket1, Basket2);
+                
             }
             else if (ingredientsPick.equalsIgnoreCase("2")) {
                 System.out.println("Your Ingredients in Meats: ");
                 List<String> Basket3 = meatProduct.getLandMeats();
                 List<String> Basket4 = meatProduct.getFishes();
                 List<String> Basket5 = meatProduct.getProcessedMeats();
-                List<String> totalBasketsByCategory = combineBaskets(Basket3, Basket4, Basket5);
-                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+                totalBasketsByCategory = combineBaskets(Basket3, Basket4, Basket5);
             }
             else if (ingredientsPick.equalsIgnoreCase("3")) {
                 System.out.println("Your Ingredients in Herbs and Spices: ");
                 List<String> Basket6 = herbSpices.getSpices();
                 List<String> Basket7 = herbSpices.getHerbs();
-                List<String> totalBasketsByCategory = combineBaskets(Basket6, Basket7);
-                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+                totalBasketsByCategory = combineBaskets(Basket6, Basket7);
             }
             else if (ingredientsPick.equalsIgnoreCase("4")) {
                 System.out.println("Your Ingredients in Condiments and Sauce: ");
                 List<String> Basket8 = oilCondiments.getCondiments();
                 List<String> Basket9 = oilCondiments.getSauces();
                 List<String> Basket10 = oilCondiments.getOils();
-                List<String> totalBasketsByCategory = combineBaskets(Basket8, Basket9, Basket10);
-                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+                totalBasketsByCategory = combineBaskets(Basket8, Basket9, Basket10);
             }
             else if (ingredientsPick.equalsIgnoreCase("4")) { 
                 System.out.println("Your Ingredients in Dairy: ");
@@ -137,9 +139,39 @@ public class GourmetQuest {
                 List<String> Basket12= dairy.getCheeses();
                 List<String> Basket13 = dairy.getCreams();
                 List<String> Basket14 = dairy.getButters();
-                List<String> totalBasketsByCategory = combineBaskets(Basket11, Basket12, Basket13, Basket14);
-                FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+                totalBasketsByCategory = combineBaskets(Basket11, Basket12, Basket13, Basket14);
             }
+            else {
+                App.clearScreen();
+                App.invalidInput();
+                continue;
+            }
+
+            if (totalBasketsByCategory.isEmpty()) {
+                System.out.println("-".repeat(150));
+                App.clearScreen();
+                System.out.println("Cannot removed ingredients since you have not pick anything yet!");
+                System.out.println("-".repeat(150));
+                continue;
+            }
+
+            FoodCategories.CategoriesPrintFormat(totalBasketsByCategory);
+            System.out.println("-".repeat(150));
+            System.out.print("Which ingredient do you want to removed[X to Exit]: ");
+            String removedIngredient = scanner.nextLine();
+
+
+            // need some fixing here felt like i could lessen that code in this part
+            // if(ingredientsPick.equals("1")) {
+            //     produced.getFruits().remove(removedIngredient);
+            //     System.out.println("it is removed");
+            //     break;
+            // }
+
+
+
+
+            
         }
     }
 
@@ -151,8 +183,8 @@ public class GourmetQuest {
 
     //filteringredients methods:
     private void applyFilters() {
+        App.clearScreen();
         filtering : while (true) {
-            App.clearScreen();
             System.out.println("How Do you want to filter[X to Exit]: ");
             System.out.println("[1] Match All -- must have every ingredient ");
             System.out.println("[2] Match Any -- at least one ingredient ");
@@ -174,12 +206,14 @@ public class GourmetQuest {
                         break;
                 
                     default:
-                        break;
+                        App.invalidInput();
+                        continue;
                 }
 
                 if (listOfResults.isEmpty()) {
                     App.clearScreen();
-                    System.out.println("Food not found!\n");  
+                    System.out.println("Food not found!");
+                    System.out.println("-".repeat(150));  
                 }   
                 else {
                     if (filterPath.equals("1")) {

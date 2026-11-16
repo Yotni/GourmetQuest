@@ -10,9 +10,9 @@ public class OilCondiments extends FoodCategories {
 
     public static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> listOfCondiments = List.of("Soy Sauce");
-    public static List<String> listOfSauces = List.of("Ketchup");
-    public static List<String> listOfOils = List.of("Canolla Oil");
+    public static List<String> listOfCondiments = List.of("Vinegar", "Soy Sauce", "Mayonnaise", "Mustard", "Patis", "Fish Sauce", "Bagoong");
+    public static List<String> listOfSauces = List.of("Ketchup", "Hot Sauce", "Barbecue Sauce", "Salsa", "Tomato Sauce", "Sriracha", "Oyster Sauce");
+    public static List<String> listOfOils = List.of("Canolla Oil", "Olive Oil", "Vegetable Oil", "Sunflower Oil", "Sesame Oil", "Coconut Oil");
 
 
     List<String> condiments;
@@ -30,8 +30,8 @@ public class OilCondiments extends FoodCategories {
 
     @Override 
     public void gatherIngredients () {
-        Dairy : while (true) {
-            App.clearScreen();
+        App.clearScreen();
+        oilCondiments : while (true) {
             System.out.println("What do you want to gather? [X to Exit]");
             System.out.println("[1] Condiments \n[2] Sauces \n[3] Oils ");
             System.out.print("Choose your field:");
@@ -51,11 +51,13 @@ public class OilCondiments extends FoodCategories {
                     ingredientList = listOfOils;
                     break;
                 case "x":
-                    break Dairy;
+                    break oilCondiments;
                 default:
+                    App.invalidInput();
                     continue;
             }
             gatheringIngredients (DairyPath, ingredientList);
+            App.clearScreen();
         }
     }
 

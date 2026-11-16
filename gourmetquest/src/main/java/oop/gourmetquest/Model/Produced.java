@@ -31,8 +31,8 @@ public class Produced extends FoodCategories {
     @Override
     public void gatherIngredients(){
         // Guys pwede pala toh sa java hahahahhahaha ang galing
+        App.clearScreen();
         Produced: while (true) {
-            App.clearScreen();
             System.out.println("What do you want to gather? [X to Exit]");
             System.out.println("[1] Vegetables \n[2] Fruits");
             System.out.print("Choose your field:");
@@ -50,9 +50,11 @@ public class Produced extends FoodCategories {
                 case "x":
                     break Produced;
                 default:
+                    App.invalidInput();
                     continue;
             }
             gatheringIngredients (producedPath, ingredientList);
+            App.clearScreen();
         }
             
     } 

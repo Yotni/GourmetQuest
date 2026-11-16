@@ -4,8 +4,12 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import oop.gourmetquest.App;
+
 @JsonIgnoreProperties({"id", "image", "Url"})
 public class Recipes {
+
+    Scanner scanner = new Scanner(System.in);
 
     private  String name;
     private List<String> ingredients;
@@ -73,35 +77,51 @@ public class Recipes {
     }
     
     public void DisplayFood(){
-        int i = 1;
-        int j = 1;
-        
-        System.out.println("Name: " + name);
-        System.out.println("Origin: " + cuisine);
-        System.out.println("Difficulty: " + difficulty);
-        
-        System.out.print("Tags: ");
-        for (String tag : tags) {System.out.print("[" + tag + "] ");}
+        App.clearScreen();
+        while (true) {
+            int i = 1;
+            int j = 1;
+            
+            System.out.println("Name: " + name);
+            System.out.println("Origin: " + cuisine);
+            System.out.println("Difficulty: " + difficulty);
+            
+            System.out.print("Tags: ");
+            for (String tag : tags) {System.out.print("[" + tag + "] ");}
 
-        System.out.print("\nMeal Type: ");
-        for (String type : mealType){System.out.print("[" + type + "] ");}
+            System.out.print("\nMeal Type: ");
+            for (String type : mealType){System.out.print("[" + type + "] ");}
 
-        System.out.println("\nPreparation Time: " + prepTimeMinutes + " minutes");
-        System.out.println("Cooking Time: " + cookTimeMinutes + " minutes");
-        System.out.println("Per Serving:" + servings);
-        System.out.println("Calorie Per Serving: " + caloriesPerServing);
-        System.out.println("-".repeat(30));
-        System.out.println("Ingredients: ");
-        for(String ingredient : ingredients){
-            System.out.println(i +" - " + ingredient);
-            i++;
+            System.out.println("\nPreparation Time: " + prepTimeMinutes + " minutes");
+            System.out.println("Cooking Time: " + cookTimeMinutes + " minutes");
+            System.out.println("Per Serving:" + servings);
+            System.out.println("Calorie Per Serving: " + caloriesPerServing);
+            System.out.println("-".repeat(30));
+            System.out.println("Ingredients: ");
+            for(String ingredient : ingredients){
+                System.out.println(i +" - " + ingredient);
+                i++;
+            }
+            System.out.println("-".repeat(30));
+            System.out.println("Method: " );
+            for(String steps : instructions){
+                System.out.println("Step " + j + ":\n" +" \t- " + steps);
+                j++;
+            }
+            
+            System.out.print("Do you want to go back [X to exit]: ");
+            String toExit = scanner.nextLine();
+
+            if (toExit.equalsIgnoreCase("x")) {
+                break;
+            }
+            else {
+                App.invalidInput();
+                continue;
+            }
+            
         }
-        System.out.println("-".repeat(30));
-        System.out.println("Method: " );
-        for(String steps : instructions){
-            System.out.println("Step " + j + ":\n" +" \t- " + steps);
-            j++;
-        }
+        
     }
 }
 

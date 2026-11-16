@@ -19,12 +19,13 @@ public abstract class FoodCategories {
 
 
     public void gatheringIngredients (String ingredientPath, List<String> ingredientList) {
-        gathering : while (true) {
-            System.out.print("\nGather a Produced [X to Exit]:  ");
+        while (true) {
+            System.out.println("-".repeat(150));
+            System.out.print("Gather a Produced [X to Exit]:  ");
             String gatherIngredients = scanner.nextLine();
 
             if (gatherIngredients.equalsIgnoreCase("x")) {
-                break gathering;
+                break;
             }
             String ingredient = PutIngredientToList(gatherIngredients, ingredientList);
 
@@ -73,11 +74,11 @@ public abstract class FoodCategories {
                 System.out.print(item + " | ");
             }
             else{
-                System.out.println();
                 count = 0;
             }  
             count ++;
         }
+        System.out.println();
     }
 
 }

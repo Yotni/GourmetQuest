@@ -7,8 +7,14 @@ public class HerbSpices extends FoodCategories {
     
     public static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> listOfHerbs= List.of("Salt");
-    public static List<String> listOfSpices= List.of("Chilli Pepper");
+    public static List<String> listOfHerbs= List.of("Basil", "Rosemary", "Parsley", "Cilantro", "Oregano", "Mint", "Chives", "Bay Leaf", "Lemongrass", "Curry Leaves",
+                                                    "Celery Leaf", "bay Laurel"
+
+                                                );
+    public static List<String> listOfSpices= List.of("salt", "Cinnamon", "Anise", "Caraway", "Ginger", "Cassia", "Cardamom", "Onion Powder",  "Garlic Powder", 
+                                                    "Chili Pepper", "Cumin", "Paprika", "Wasabi", "Jalapeño", "Black Pepper", "Turmeric", "Bay Leaves", "Smoked Paprika",
+                                                    "Cayenne Pepper", "Red Pepper Flakes", "Dried Oregano", "Dried Thyme", "Nutmeg", "Curry Powder", "Allspice"
+                                                );
 
     List<String> herbs;
     List<String> spices;
@@ -22,8 +28,8 @@ public class HerbSpices extends FoodCategories {
 
     @Override 
     public void gatherIngredients() {
+        App.clearScreen();
         HerbSpices : while (true) {
-            App.clearScreen();
             System.out.println("Gather Herbs and Spices! [X to Exit]");
             System.out.println("[1] Herbs \n[2] Spices");
             System.out.print("Choose your Herb and Spices:");
@@ -41,9 +47,11 @@ public class HerbSpices extends FoodCategories {
                 case "x":
                     break HerbSpices;
                 default:
+                    App.invalidInput();
                     continue;
             }
             gatheringIngredients (herbsSpicesPath, ingredientList);
+            App.clearScreen();
         }
     }
 

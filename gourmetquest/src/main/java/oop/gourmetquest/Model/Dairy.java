@@ -10,10 +10,12 @@ public class Dairy extends FoodCategories{
 
     public static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> listOfMilks = List.of("Whole Milk");
-    public static List<String> listOfCheeses = List.of("Cheddar");
-    public static List<String> listOfCreams = List.of("Whipped Cream");
-    public static List<String> listOfbutters = List.of("Unsalted Butter");
+    public static List<String> listOfMilks = List.of("Whole Milk", "Reduced-Fat", "Skim", "Sheep Milk", "Goat Milk", "Soy Milk", "Almond Milk", "Oat Milk", "Coconut Milk",
+                                                    "Pea Milk", "Evaporated milk", "Condensed Milk", "Fresh Milk"
+                                                    );
+    public static List<String> listOfCheeses = List.of("Cheddar", "Mozzarella", "Gouda", "Parmesan", "Feta", "Cream Cheese", "Blue Cheese" ,"American Cheese");
+    public static List<String> listOfCreams = List.of("Whipped Cream", "Light Cream", "Heavy Cream", "Clotted Cream ", "");
+    public static List<String> listOfbutters = List.of("Unsalted Butter", "Cultured Butter", "Grass-Fed Butter", "Sweet Cream");
 
     List<String> milks;
     List<String> cheeses;
@@ -31,8 +33,8 @@ public class Dairy extends FoodCategories{
 
     @Override 
     public void gatherIngredients () {
+        App.clearScreen();
         Dairy : while (true) {
-            App.clearScreen();
             System.out.println("What do you want to gather? [X to Exit]");
             System.out.println("[1] Milks \n[2] Cheeses \n[3] Butter \n[4] Creams");
             System.out.print("Choose your field:");
@@ -58,9 +60,11 @@ public class Dairy extends FoodCategories{
                 case "x":
                     break Dairy;
                 default:
+                    App.invalidInput();
                     continue;
             }
             gatheringIngredients (DairyPath, ingredientList);
+            App.clearScreen();
         }
     }
 

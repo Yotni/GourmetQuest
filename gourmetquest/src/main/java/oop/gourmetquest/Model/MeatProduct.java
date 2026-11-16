@@ -10,13 +10,13 @@ public class MeatProduct extends FoodCategories{
 
     //https://www.onlyfoods.net/category/meat
     public static List<String> ListOfLandMeats = List.of ("Pork", "Beef", "Veal", "Mutton", "Lamb", "Chicken", "Duck",
-                                                        "Turkey", "Goose", "Pheasant");
+                                                        "Turkey", "Goose", "Pheasant", "Egg");
                                                         
     //https://www.onlyfoods.net/category/meat
     public static List<String> ListOfFishes = List.of ("Salmon", "Lobster", "Crab", "Prawn",  "MusselS", "Scallops", "Oysters", 
                                                         "Cod", "Fishfillet", "Anchovies", "Haddock","Trout", "Bass", "Mackerel");
     //https://www.onlyfoods.net/cured-meats
-    public static List<String> ListOfProcessedMeats = List.of("Tuna", "Bacon", "Salami", "Sausage", "chorizo");
+    public static List<String> ListOfProcessedMeats = List.of("Tuna", "Bacon", "Salami", "Sausage", "chorizo", "Meatloaf", "Sausage");
 
     List<String> landMeats;
     List<String> fishes;
@@ -31,11 +31,10 @@ public class MeatProduct extends FoodCategories{
 
     @Override
     public void gatherIngredients() {
+        App.clearScreen();
         Meat: while (true) {
-            App.clearScreen();
-
             System.out.println("What do you want to butcher? [X to Exit]");
-            System.out.println("[1] Land meat \n[2] Fishes [3] \nProcess meat");
+            System.out.println("[1] Land meat \n[2] Fishes \n[3] Process meat");
             System.out.print("Choose your field:");
             String meatProductPath = scanner.nextLine();
 
@@ -56,9 +55,11 @@ public class MeatProduct extends FoodCategories{
                     break Meat;
             
                 default:
+                    App.invalidInput();
                     continue;
             }
             gatheringIngredients (meatProductPath, ingredientList);
+            App.clearScreen();
         }
     }
 

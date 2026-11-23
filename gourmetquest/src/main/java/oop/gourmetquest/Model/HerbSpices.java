@@ -47,7 +47,7 @@ public class HerbSpices extends FoodCategories {
                 case "x":
                     break HerbSpices;
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             gatheringIngredients (herbsSpicesPath, ingredientList);

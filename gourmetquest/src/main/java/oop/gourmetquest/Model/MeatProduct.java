@@ -55,7 +55,7 @@ public class MeatProduct extends FoodCategories{
                     break Meat;
             
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             gatheringIngredients (meatProductPath, ingredientList);

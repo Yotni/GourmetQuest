@@ -53,7 +53,7 @@ public class OilCondiments extends FoodCategories {
                 case "x":
                     break oilCondiments;
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             gatheringIngredients (DairyPath, ingredientList);

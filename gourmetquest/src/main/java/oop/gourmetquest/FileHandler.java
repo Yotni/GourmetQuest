@@ -2,7 +2,9 @@ package oop.gourmetquest;
 import  oop.gourmetquest.Model.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
  
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,9 +14,9 @@ public class FileHandler {
 
     public static final Scanner scanner = new Scanner(System.in);
 
-    private static final File FilePathRecipes = new File("gourmetquest\\src\\main\\Data\\Breakfast.json");
-    private static final File FilePathSaving = new File("C:gourmetquest\\src\\main\\Data\\SavedRecipes.json");
-    private static final File FilePathToDoList = new File("C:gourmetquest\\src\\main\\Data\\RecipeToDoList.json");
+    public static final File FilePathRecipes = new File("gourmetquest\\src\\main\\Data\\Breakfast.json");
+    public static final File FilePathSaving = new File("gourmetquest\\src\\main\\Data\\SavedRecipes.json");
+    public static final File FilePathToDoList = new File("gourmetquest\\src\\main\\Data\\RecipeToDoList.json");
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -36,24 +38,21 @@ public class FileHandler {
     }
 
     //jackson objectmapper
-    public static List<Recipes> deserialize(File Filepath){
-        try {
-            return mapper.readValue(Filepath, new TypeReference<List<Recipes>>() {});
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+    public static List<Recipes> deserialize(File Filepath) throws IOException{
+        if (Filepath == null || !Filepath.exists()) {
+            throw new IOException();
         }
-        return null;
+
+        return mapper.readValue(Filepath, new TypeReference<List<Recipes>>() {});
     }
 
-    public static void serialize(Recipes pickRecipe, File FilePath) throws Exception {
-        List<Recipes> Recipes = new ArrayList<>();
-
-        if (FilePath.exists()) {
-            Recipes = deserialize(FilePath);
+    public static void serialize(Recipes pickRecipe, File FilePath) throws IOException {
+        if (!FilePath.exists()) {
+             Files.writeString(FilePath.toPath(), "[]");
         }
-
+ 
+        List<Recipes> Recipes = deserialize(FilePath);
+    
         boolean isSaved = false;
         for (Recipes Recipe : Recipes) {
             if(Recipe.getName().equalsIgnoreCase(pickRecipe.getName())) {
@@ -74,12 +73,16 @@ public class FileHandler {
             }
             else if (FilePath.equals(FilePathToDoList)) {
                 App.clearScreen();
-                System.out.println( "The recipe " + pickRecipe.getName() + " is on your to do list.");
+                System.out.println( "The recipe " + pickRecipe.getName() + " is already on your to do list.");
             }
+
             System.out.println("-".repeat(150));
+
+            
         }
-        
+
         mapper.writerWithDefaultPrettyPrinter().writeValue(FilePath, Recipes);
+        
     }
 
     public static void removedARecipe(Recipes selectedItem, List<Recipes> listOfResults, String CallerType) throws IOException{
@@ -96,7 +99,7 @@ public class FileHandler {
         else if (CallerType.equalsIgnoreCase("toDoList")) {
             listOfResults.remove(selectedItem);
 
-            mapper.writerWithDefaultPrettyPrinter().writeValue(FilePathSaving, listOfResults);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(FilePathToDoList, listOfResults);
 
             App.clearScreen();
             System.out.println(selectedItem.getName() + " was removed from To do list");
@@ -110,8 +113,10 @@ public class FileHandler {
     }
 
     //find Food name
-    public static List<Recipes> SearchingName(String Search){
-        List<Recipes> recipes = deserialize(FilePathRecipes);
+    public static List<Recipes> SearchingName(String Search) throws IOException{
+
+        List<Recipes> recipes = deserialize(FilePathRecipes);  
+        
         List<Recipes> listOfResults = new ArrayList<>();
 
         if(Search.isEmpty()) {
@@ -139,8 +144,9 @@ public class FileHandler {
 
 
     // filtering every items
-    public static  List<Recipes> filteringEveryItems (List<String> AllIngredients) {
+    public static  List<Recipes> filteringEveryItems (List<String> AllIngredients) throws IOException {
         List<Recipes> recipes = deserialize(FilePathRecipes);
+        
         List<Recipes> listOfResults = new ArrayList<>();
        
         for (Recipes recipe : recipes) {
@@ -167,8 +173,9 @@ public class FileHandler {
     }
     
     //filtering thorgh ingredients At least one
-    public static  List<Recipes> filteringAtLeast1 (List<String> AllIngredients) {
+    public static  List<Recipes> filteringAtLeast1 (List<String> AllIngredients) throws IOException {
         List<Recipes> recipes = deserialize(FilePathRecipes);
+
         List<Recipes> listOfResults = new ArrayList<>();
        
         for (Recipes recipe : recipes ) {
@@ -316,7 +323,16 @@ public class FileHandler {
 
         Random random = new Random();
         
-        List<Recipes> recipes = deserialize(FilePathRecipes);
+        List<Recipes> recipes = null;
+        try {
+            recipes = deserialize(FilePathRecipes);
+        } catch (FileNotFoundException e) {
+            App.handleException(e);
+            return null; 
+        } catch (IOException e) {
+            App.handleException(e);
+            return null; 
+        }
         List<Recipes> listOfResults = new ArrayList<>();
 
         for (Recipes recipe : recipes) {

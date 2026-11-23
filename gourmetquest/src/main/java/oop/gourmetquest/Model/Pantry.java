@@ -62,7 +62,7 @@ public class Pantry extends FoodCategories{
                 case "x":
                     break Produced;
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             gatheringIngredients (producedPath, ingredientList);

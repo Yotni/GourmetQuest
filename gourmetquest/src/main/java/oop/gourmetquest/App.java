@@ -1,19 +1,21 @@
 package oop.gourmetquest;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
 import oop.gourmetquest.Model.*;
-
-
+ 
 public class App {
+
+    // private static File FilePathRecipes = FileHandler.FilePathRecipes;
+    private static File FilePathSaving = FileHandler.FilePathSaving;
+    private static File FilePathToDoList = FileHandler.FilePathToDoList;
+
     public static final Scanner scanner = new Scanner(System.in);
-
-    private static final File FilePathSaving = new File("C:gourmetquest\\\\src\\\\main\\\\Data\\SavedRecipes.json");
-    private static final File FilePathToDoList = new File("C:gourmetquest\\src\\main\\Data\\RecipeToDoList.json");
-
     public static final Produced produced = new Produced();
+
     public static final MeatProduct meatProduct = new MeatProduct();
     public static final HerbSpices herbSpices = new HerbSpices();
     public static final Dairy dairy = new Dairy();
@@ -24,12 +26,18 @@ public class App {
     public static GourmetQuest gourmetQuest = new GourmetQuest(produced, meatProduct, herbSpices, dairy, oilCondiments, pantry, fileHandler);
     
 
-    public static void main( String[] args ){
-
+    public static void main(String[] args){
+        clearScreen();
         while(true){
-            clearScreen();
-            List<Recipes> listOfResults = FileHandler.deserialize(FilePathToDoList);
+            List<Recipes> listOfResults = new ArrayList<>();
 
+            try {
+                listOfResults = FileHandler.deserialize(FilePathToDoList);
+            } catch (FileNotFoundException e) {
+                handleException(e);
+            } catch (IOException e) {
+                handleException(e);
+            }
             System.out.println("Gourmet Quest: Search A food that will change your Life!");
             System.out.println("[1] Search recipes");
             System.out.println("[2] Saved Recipes");
@@ -57,10 +65,11 @@ public class App {
                     System.out.println("\nUntil we meet again traveler\n");
                     programmedClosed();
                 default:
-                    invalidInput();
+                    handleError();
                     continue;
 
             }
+            clearScreen();
         }
     }
 
@@ -76,19 +85,18 @@ public class App {
 
             switch (SearchPath.toLowerCase()) {
                 case "1":
-                    gourmetQuest.SearchName();
-                    clearScreen();
+                    gourmetQuest.searchName();
                     break;
                 case "2":
                     gourmetQuest.filterIngredients();
-                    clearScreen();
                     break;
                 case "x":
                     break searchRecipes;
                 default:
-                    invalidInput();        
+                    handleError();        
                     continue;  
             }
+            clearScreen();
         }
 
     }
@@ -97,13 +105,17 @@ public class App {
         clearScreen();
         SavedRecipes : while (true) {
             System.out.println("Recipes You have saved [[TD] Add to-do list | [D] Delete saved recipe]: ");
+            System.out.println("-".repeat(150));
 
-            if(!FilePathSaving.exists()) {
-                System.out.println("Could not find file path for Saving!");
-                break;
+            List<Recipes> listOfResults = new ArrayList<>();
+
+            try {
+                listOfResults = FileHandler.deserialize(FilePathSaving);
+            } catch (FileNotFoundException e) {
+                handleException(e);
+            } catch (IOException e) {
+                handleException(e);
             }
-
-            List<Recipes> listOfResults = FileHandler.deserialize(FilePathSaving);
 
             if (listOfResults.isEmpty()) {
                 System.out.println("Your saved recipes is empty!");
@@ -112,42 +124,52 @@ public class App {
                 FileHandler.outputRecipes(listOfResults);
 
             }
+            System.out.println("-".repeat(30));
             System.out.print("Choose a recipe to view[X to Exit]: ");
             String PickARecipe = scanner.nextLine();
-
-            if (listOfResults.isEmpty()) {
-                clearScreen();
-                System.out.println("You cannot choose if you dont have a choice at all!");
-                System.out.println("-".repeat(150));
-                continue;
-                
-            }
 
             if (PickARecipe.equalsIgnoreCase("X")) {
                 break SavedRecipes;
             }
-            else if (PickARecipe.equalsIgnoreCase("D")) {
-                GourmetQuest.deleteList(PickARecipe, listOfResults, "SavedRecipes");
+            
+            if (listOfResults.isEmpty()) {
                 clearScreen();
+                System.out.println("You cannot choose if you dont have a choice at all!");
+                System.out.println("-".repeat(150));
+                continue; 
+            }
+            else if (PickARecipe.equalsIgnoreCase("D")) {
+                Recipes selectedItem = GourmetQuest.savedToDelete(listOfResults);
+
+                GourmetQuest.deleteFromRecipeCollections(selectedItem, listOfResults, "SavedRecipes"); 
             }
             else if (PickARecipe.equalsIgnoreCase("TD")) {
                 GourmetQuest.AddToDoList(listOfResults, FilePathToDoList);
                 clearScreen();
             }
             else {
+                
+                if (!PickARecipe.matches("-?\\d+")) {
+                    handleError("notNumber");
+                    continue;
+                }
+                int recipeIndex = -1;
+
                 try {
-                    Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                    System.out.println("-".repeat(150));
-                    selectedItem.DisplayFood();
-                    clearScreen();       
-                }catch (IndexOutOfBoundsException e) {
-                    handleException(e);
-                }catch (NumberFormatException e) {
+                    recipeIndex = Integer.parseInt(PickARecipe);
+                } catch (NumberFormatException e) {
                     handleException(e);
                 }
+                
+                if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
+                    handleError("OutOfRange");
+                    continue;
+                }
+                
+                Recipes selectedItem = listOfResults.get(recipeIndex - 1);
+                selectedItem.DisplayFood();
+                clearScreen();
             }
-            
-
         }
 
     }
@@ -157,11 +179,20 @@ public class App {
             System.out.println("Your to do List: ");
 
             if(!FilePathToDoList.exists()) {
+                App.clearScreen();
                 System.out.println("Could not find file path for To do list!");
                 break;
             }
 
-            List<Recipes> listOfResults = FileHandler.deserialize(FilePathToDoList);
+            List<Recipes> listOfResults = new ArrayList<>();
+
+            try {
+                listOfResults = FileHandler.deserialize(FilePathToDoList);
+            } catch (FileNotFoundException e) {
+                handleException(e);
+            } catch (IOException e) {
+                handleException(e);
+            }
 
             if (listOfResults.isEmpty()) {
                 System.out.println("-".repeat(150));
@@ -171,7 +202,7 @@ public class App {
                 FileHandler.outputRecipes(listOfResults);
 
             }
-            System.out.println("-".repeat(150));
+            System.out.println("-".repeat(30));
             System.out.print("Choose a recipe to Do [X to Exit]: ");
             String PickARecipe = scanner.nextLine();
             if (PickARecipe.equalsIgnoreCase("X")) {
@@ -182,19 +213,32 @@ public class App {
                 System.out.println("You cannot choose if you dont have a choice at all!");
                 System.out.println("-".repeat(150));
                 continue;
-                
             }
-            else {
-                try {
-                    GourmetQuest.deleteList(PickARecipe, listOfResults, "toDoList");
-                } catch (NumberFormatException e ) {
-                    handleException(e);
-                } catch (Exception e ) {
-                    handleException(e);
-                } 
-            }
-                
 
+            if (!PickARecipe.matches("-?\\d+")) {
+                handleError("notNumber");
+                continue;
+            }
+
+            else {
+                int recipeIndex = -1;
+
+                try {
+                    recipeIndex = Integer.parseInt(PickARecipe);
+                } catch (NumberFormatException e) {
+                    handleException(e);
+                }
+
+                if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
+                    handleError("OutOfRange");
+                    continue;
+                }
+
+                Recipes selectedItem  = listOfResults.get(recipeIndex - 1);
+                selectedItem.DisplayFood();
+                GourmetQuest.deleteFromRecipeCollections(selectedItem, listOfResults, "toDoList");
+                
+            }
         }
             
     }
@@ -209,7 +253,8 @@ public class App {
             System.out.println("[3] Dinner");
             System.out.println("[4] Dessert ");
             System.out.println("[5] Appetizer");
-            System.out.print("Choose Your Path: ");
+            System.out.println("-".repeat(30));
+            System.out.print("Choose Your Meal Type: ");
 
             String pickrandomRecipe = scanner.nextLine();
 
@@ -232,32 +277,34 @@ public class App {
                 case "x" :
                     break RandomRecipes;
                 default:
-                    App.invalidInput();
+                    handleError();
                     continue;
             }  
             while (true) {
-                try{
-                    Recipes randomRecipe = FileHandler.generateRandomRecipe(randomCategory);
+        
+                Recipes randomRecipe = FileHandler.generateRandomRecipe(randomCategory);
 
-                    System.out.println("-".repeat(150));
-                    System.out.print("Do you want to saved this recipe [Y/X]: ");
-                    String toSaved = scanner.nextLine();
+                System.out.println("-".repeat(150));
+                System.out.print("Do you want to saved this recipe [Y/X]: ");
+                String toSaved = scanner.nextLine();
 
-                    if(toSaved.equalsIgnoreCase("Y")) {
+                if(toSaved.equalsIgnoreCase("Y")) {
+                    try {
                         FileHandler.serialize(randomRecipe, FilePathSaving);
-                        break;
-                    }
-                    else if(toSaved.equalsIgnoreCase("X")) {
-                        clearScreen();
-                        break;
-                    }
-                    else {
-                        continue;
+                    } catch (Exception e) {
+                        handleException(e);
                     }
                     
-                } catch (Exception e) {
-                    App.handleException(e);
-                }    
+                    break;
+                }
+                else if(toSaved.equalsIgnoreCase("X")) {
+                    clearScreen();
+                    break;
+                }
+                else {
+                    continue;
+                }
+                    
             } 
             
             
@@ -269,10 +316,36 @@ public class App {
         System.out.flush();
     }
     //this is just for invalid input wihtout try catch.
-    public static void invalidInput() {
+    //method overriding
+    public static void handleError() {
         clearScreen();
         System.out.println("Invalid input. Please enter a valid input!");
         System.out.println("-".repeat(150));
+    }
+
+    public static void handleError(String ErrorType) {
+        
+        if (ErrorType.equals("notNumber")) {
+            clearScreen();
+            System.out.println("Input Error: Please only enter a number!");
+            System.out.println("-".repeat(150));
+        }
+        else if (ErrorType.equals("OutOfRange")) {
+            clearScreen();
+            System.out.println("Input Error: Recipe number is out of range!");
+            System.out.println("-".repeat(150));
+        }
+        else if (ErrorType.equals("FileNotExist")) {
+            clearScreen();
+            System.out.println(" File Error: A file is missing!");
+            System.out.println("-".repeat(150));
+        } 
+        else {
+            clearScreen();
+            System.out.println("Invalid input. Please enter a valid input!");
+            System.out.println("-".repeat(150));
+        }
+        
 
     }
     public static void programmedClosed(){
@@ -283,12 +356,12 @@ public class App {
 
         if (e instanceof NumberFormatException) {
             clearScreen();
-            System.out.println("Error: Please enter integers only!");
+            System.out.println("Error: Please enter numbers only!");
             System.out.println("-".repeat(150));
         }
         else if (e instanceof IndexOutOfBoundsException) {
             clearScreen();
-            System.out.println("Error: Invalid recipe number!");
+            System.out.println("Error: Recipe number is out of range!");
             System.out.println("-".repeat(150));
         }
         else if (e instanceof NullPointerException) {
@@ -300,10 +373,14 @@ public class App {
             clearScreen();
             System.out.println("Invalid input. Please enter a valid number!");
             System.out.println("-".repeat(150));
+        }else if (e instanceof FileNotFoundException ) {
+            clearScreen();
+            System.out.println("File Exception: Unable to access the required file");
+            System.out.println("-".repeat(150));
         }
         else if (e instanceof IOException) {
             clearScreen();
-            System.out.println("Failed to save JSON file");
+            System.out.println("File Exception: Unable to read or save the file");
             System.out.println("-".repeat(150));
         }
         else {

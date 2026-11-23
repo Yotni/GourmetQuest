@@ -50,7 +50,7 @@ public class Produced extends FoodCategories {
                 case "x":
                     break Produced;
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             gatheringIngredients (producedPath, ingredientList);

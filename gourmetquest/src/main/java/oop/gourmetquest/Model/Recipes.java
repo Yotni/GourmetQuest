@@ -116,7 +116,7 @@ public class Recipes {
                 break;
             }
             else {
-                App.invalidInput();
+                App.handleError();
                 continue;
             }
             

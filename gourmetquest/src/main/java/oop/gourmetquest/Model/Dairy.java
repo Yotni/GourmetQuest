@@ -60,7 +60,7 @@ public class Dairy extends FoodCategories{
                 case "x":
                     break Dairy;
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             gatheringIngredients (DairyPath, ingredientList);

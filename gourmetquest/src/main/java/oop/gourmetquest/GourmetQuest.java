@@ -2,14 +2,18 @@ package oop.gourmetquest;
 import  oop.gourmetquest.Model.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
 public class GourmetQuest {
 
     public static final Scanner scanner = new Scanner(System.in);
-    private static final File FilePathSaving = new File("C:gourmetquest\\src\\main\\Data\\SavedRecipes.json");
-    
+
+    // private static File FilePathRecipes = FileHandler.FilePathRecipes;
+    private static File FilePathSaving = FileHandler.FilePathSaving;
+    // private static File FilePathToDoList = FileHandler.FilePathToDoList;
+
     private Produced produced;
     private MeatProduct meatProduct;
     private HerbSpices herbSpices;
@@ -29,7 +33,7 @@ public class GourmetQuest {
         this.fileHandler = fileHandler;
     }
 
-    void SearchName(){
+    void searchName(){
         App.clearScreen();
         while (true) {
             System.out.print("Search[X to Exit]: ");
@@ -38,16 +42,26 @@ public class GourmetQuest {
             if (Search.equalsIgnoreCase("X"))
                 return;
             else{
-                List<Recipes> listOfResults = FileHandler.SearchingName(Search);
+                List<Recipes> listOfResults = null;
+                try {
+                    listOfResults = FileHandler.SearchingName(Search);
+                } catch (IOException e) {
+                    App.handleException(e);
+                    continue;
+                } catch (NullPointerException e) {
+                    App.handleException(e);
+                    continue;
+                }
+
                 if (listOfResults.isEmpty()) {
                     App.clearScreen();
                     System.out.println("Food not found!");
                     System.out.println("-".repeat(150));
                 }   
-                else {
-                    OutputAndSaveItem(listOfResults, Search);
-                    App.clearScreen();
-                }  
+                
+                OutputAndSaveItem(listOfResults, Search);
+                App.clearScreen();
+                
             }
         }
     }
@@ -101,7 +115,7 @@ public class GourmetQuest {
                     break ingredientSearch;
             
                 default:
-                    App.invalidInput();
+                    App.handleError();
                     continue;
             }
             App.clearScreen();
@@ -132,7 +146,7 @@ public class GourmetQuest {
                     totalBasketsByCategory = fileHandler.ouputIngredientsToRemoved(ingredientsPick);
                 }
                 else {
-                    App.invalidInput();
+                    App.handleError();
                     break toRemoved;
                 }
                 App.clearScreen();
@@ -211,14 +225,24 @@ public class GourmetQuest {
                 List<String> AllIngredients = fileHandler.getTotalIngredients();
                 switch (filterPath) {
                     case "1":
-                        listOfResults = FileHandler.filteringEveryItems(AllIngredients);
+                        try {
+                            listOfResults = FileHandler.filteringAtLeast1(AllIngredients);
+                        } catch (IOException e) {
+                            App.handleException(e);
+                            continue;
+                        }
                         break;
                     case "2":
-                        listOfResults = FileHandler.filteringAtLeast1(AllIngredients);
+                        try {
+                            listOfResults = FileHandler.filteringAtLeast1(AllIngredients);
+                        } catch (IOException e) {
+                            App.handleException(e);
+                            continue;
+                        }
                         break;
                 
                     default:
-                        App.invalidInput();
+                        App.handleError();
                         continue;
                 }
 
@@ -251,19 +275,26 @@ public class GourmetQuest {
             if (PickARecipe.equalsIgnoreCase("x")) {
                 break;
             }
+
+            if (!PickARecipe.matches("-?\\d+")) {
+                    App.handleError();
+                    continue;
+            }
+
             else {
+                int recipeIndex = Integer.parseInt(PickARecipe);
+
+                if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
+                    App.handleError();
+                    continue;
+                }
+
+                Recipes selectedItem = listOfResults.get(recipeIndex - 1);
                 try {
-                    Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
                     FileHandler.serialize(selectedItem, FilePathToDoList);
-                } catch (IndexOutOfBoundsException e) {
-                    App.handleException(e);
-                } catch (InputMismatchException e) {
-                    App.handleException(e);
-                } catch (NumberFormatException e) {
-                    App.handleException(e);
                 } catch (Exception e) {
                     App.handleException(e);
-                }    
+                }
                 
             }
         }
@@ -314,43 +345,51 @@ public class GourmetQuest {
         }
     }
 
-    public static void deleteList(String PickARecipe, List<Recipes> listOfResults, String CallerType) {
+    public static Recipes savedToDelete (List<Recipes> listOfResults) {
+        Recipes selectedItem = null;
         App.clearScreen();
         while (true) {
-            
-            Recipes selectedItem = null;
+            System.out.println("Your saved recipes to delete [X to Exit]: ");
+            FileHandler.outputRecipes(listOfResults);
+            System.out.println("-".repeat(150));
+            System.out.print("Select a recipe to delete: ");
+            String PickARecipe = scanner.nextLine();
 
-            if (CallerType.equalsIgnoreCase("SavedRecipes")) {
-                System.out.println("Your saved recipes to delete: ");
-                FileHandler.outputRecipes(listOfResults);
-                System.out.println("-".repeat(150));
-                System.out.print("Select a recipe to delete: ");
-                PickARecipe = scanner.nextLine();
-                try {
-                    selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                } catch (IndexOutOfBoundsException e) {
-                    App.handleException(e);
-                    continue;
-                }  catch (NumberFormatException e) {
-                    App.handleException(e);
-                    continue;
-                } catch (Exception e) {
-                    App.handleException(e);
-                    continue;
-                }
+            if (PickARecipe.equalsIgnoreCase("x")) {
+                break;
+            }
 
+            else if (!PickARecipe.matches("-?\\d+")) {
+                App.handleError();
+                continue;
+            }
+            int recipeIndex = Integer.parseInt(PickARecipe);
+
+            if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
+                App.handleError();
+                continue;
+            }
+            selectedItem = listOfResults.get(recipeIndex - 1);
+            break;
+        }  
+        
+        return selectedItem;
+    }
+
+    public static void deleteFromRecipeCollections(Recipes selectedItem, List<Recipes> listOfResults, String CallerType) {
+        while (true) {
+            if (CallerType.equals("SavedRecipes")) {
                 System.out.println("-".repeat(150));
                 System.out.print("Do you want to remove " + selectedItem.getName() + " from Saved Recipes[Y/X]: ");
             }
-            else if (CallerType.equalsIgnoreCase("toDoList")) {
-                selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                selectedItem.DisplayFood();
+            else if (CallerType.equals("toDoList")) {
                 System.out.println("-".repeat(150));
                 System.out.print("Do you want to remove " + selectedItem.getName() + " from to do list[Y/X]: ");
             }
             
             String toRemoved = scanner.nextLine();
             if (toRemoved.equalsIgnoreCase("x")) {
+                App.clearScreen();
                 break;
             }
             else if(toRemoved.equalsIgnoreCase("y")) {
@@ -361,12 +400,9 @@ public class GourmetQuest {
                 } catch (Exception e) {
                     App.handleException(e);
                 } 
-            }
-            else {
-                App.invalidInput();
-            }       
+            }    
             
-            App.clearScreen();
+            break;
         }
         
     }
@@ -384,18 +420,27 @@ public class GourmetQuest {
             if (PickARecipe.equalsIgnoreCase("x")) {
                 break;
             }
+            if (!PickARecipe.matches("-?\\d+")) {
+                    App.handleError();
+                    continue;
+            }
             else {
-                try {
-                    Recipes selectedRecipe = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                    FileHandler.serialize(selectedRecipe, FilePathSaving);
-                } catch (IndexOutOfBoundsException e) {
-                    App.handleException(e);
-                } catch (InputMismatchException e) {
-                    App.handleException(e);
-                } catch (Exception e) {
-                    App.handleException(e);
-                }    
+                int recipeIndex = Integer.parseInt(PickARecipe);
+
+                if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
+                    App.handleError();
+                    continue;
+                }
+
+                Recipes selectedRecipe = listOfResults.get(recipeIndex - 1);
                 
+                try {
+                    FileHandler.serialize(selectedRecipe, FilePathSaving);
+                } catch (FileNotFoundException e) {
+                    App.handleException(e);
+                } catch (IOException e) {
+                    App.handleException(e);
+                }
             }
         }
 

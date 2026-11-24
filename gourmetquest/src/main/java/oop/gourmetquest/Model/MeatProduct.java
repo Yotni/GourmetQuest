@@ -9,14 +9,25 @@ public class MeatProduct extends FoodCategories{
     Scanner scanner = new Scanner(System.in);
 
     //https://www.onlyfoods.net/category/meat
-    public static List<String> ListOfLandMeats = List.of ("Pork", "Beef", "Veal", "Mutton", "Lamb", "Chicken", "Duck",
-                                                        "Turkey", "Goose", "Pheasant", "Egg");
+    public static List<String> ListOfLandMeats = List.of("Pork", "Beef", "Veal", "Mutton", "Lamb", "Chicken", "Duck", "Turkey", "Goose", 
+    "Pheasant", "Quail", "Rabbit", "Venison", "Egg"
+);
                                                         
     //https://www.onlyfoods.net/category/meat
-    public static List<String> ListOfFishes = List.of ("Salmon", "Lobster", "Crab", "Prawn",  "MusselS", "Scallops", "Oysters", 
-                                                        "Cod", "Fishfillet", "Anchovies", "Haddock","Trout", "Bass", "Mackerel");
+    public static List<String> ListOfFishes = List.of("Salmon", "Cod", "Fish Fillet", "Tuna", "Anchovies", "Haddock", "Trout", "Bass", "Mackerel", "Sardines", "Tilapia", "Catfish", "Milkfish", 
+    "Herring", "Snapper", "Grouper",
+    //fish at top ^
+    // Crustaceans 
+    "Lobster", "Crab", "Prawn", "Shrimp",
+
+    // Shellfish
+    "Mussels", "Scallops", "Oysters", "Clams", "Squid", "Octopus"
+    );
+
     //https://www.onlyfoods.net/cured-meats
-    public static List<String> ListOfProcessedMeats = List.of("Tuna", "Bacon", "Salami", "Sausage", "chorizo", "Meatloaf", "Sausage");
+    public static List<String> ListOfProcessedMeats = List.of("Bacon", "Ham", "Salami", "Sausage", "Chorizo", "Meatloaf", "Hotdog", "Pepperoni", 
+    "Corned Beef", "Pastrami", "Spam", "Tocino", "Longganisa", "Beef Jerky", "Vienna Sausage"
+    );
 
     List<String> landMeats;
     List<String> fishes;
@@ -35,7 +46,8 @@ public class MeatProduct extends FoodCategories{
         Meat: while (true) {
             System.out.println("What do you want to butcher? [X to Exit]");
             System.out.println("[1] Land meat \n[2] Fishes \n[3] Process meat");
-            System.out.print("Choose your field:");
+            System.out.println("-".repeat(30));
+            System.out.print("Select an option: ");
             String meatProductPath = scanner.nextLine();
 
             switch (meatProductPath.toLowerCase()) {

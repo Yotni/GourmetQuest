@@ -36,15 +36,15 @@ public class GourmetQuest {
     void searchName(){
         App.clearScreen();
         while (true) {
-            System.out.print("Search[X to Exit]: ");
-            String Search = scanner.nextLine();
+            System.out.print("Search [X to Exit]: ");
+            String search = scanner.nextLine();
 
-            if (Search.equalsIgnoreCase("X"))
+            if (search.equalsIgnoreCase("X"))
                 return;
             else{
                 List<Recipes> listOfResults = null;
                 try {
-                    listOfResults = FileHandler.SearchingName(Search);
+                    listOfResults = FileHandler.searchByName(search);
                 } catch (IOException e) {
                     App.handleException(e);
                     continue;
@@ -57,9 +57,10 @@ public class GourmetQuest {
                     App.clearScreen();
                     System.out.println("Food not found!");
                     System.out.println("-".repeat(150));
+                    continue;
                 }   
                 
-                OutputAndSaveItem(listOfResults, Search);
+                OutputAndSaveItem(listOfResults, search);
                 App.clearScreen();
                 
             }
@@ -79,7 +80,9 @@ public class GourmetQuest {
             System.out.println("[6] Pantry");
             System.out.println("[7] Removed an Ingredients");
             System.out.println("[8] Apply Filters");
-            System.out.print("Choose Your Path: ");
+
+            System.out.println("-".repeat(30));
+            System.out.print("Select an option: ");
 
             String ingredientsPick = scanner.nextLine();
             switch (ingredientsPick.toLowerCase()) {
@@ -132,7 +135,9 @@ public class GourmetQuest {
             System.out.println("[4] Oil and Condiments");
             System.out.println("[5] Dairy");
             System.out.println("[6] Pantry");
-            System.out.print("Choose Your Path: ");
+
+            System.out.println("-".repeat(30));
+            System.out.print("Select an option: ");
 
             String ingredientsPick = scanner.nextLine();
 
@@ -214,7 +219,9 @@ public class GourmetQuest {
             System.out.println("How Do you want to filter[X to Exit]: ");
             System.out.println("[1] Match All -- must have every ingredient ");
             System.out.println("[2] Match Any -- at least one ingredient ");
-            System.out.print("Choose Your Path: ");
+
+            System.out.println("-".repeat(30));
+            System.out.print("Select an option: ");
             String filterPath = scanner.nextLine();
             if (filterPath.equalsIgnoreCase("x")) {
                 break filtering;
@@ -222,11 +229,12 @@ public class GourmetQuest {
             
             else {
                 List<Recipes> listOfResults = new ArrayList<> ();
-                List<String> AllIngredients = fileHandler.getTotalIngredients();
+                List<String> Ingredients = fileHandler.getTotalIngredients();
                 switch (filterPath) {
                     case "1":
                         try {
-                            listOfResults = FileHandler.filteringAtLeast1(AllIngredients);
+                            listOfResults = FileHandler.filteringAll(Ingredients);
+                            filterPath = "allIngredient";
                         } catch (IOException e) {
                             App.handleException(e);
                             continue;
@@ -234,7 +242,8 @@ public class GourmetQuest {
                         break;
                     case "2":
                         try {
-                            listOfResults = FileHandler.filteringAtLeast1(AllIngredients);
+                            listOfResults = FileHandler.filteringAtLeast1(Ingredients);
+                            filterPath = "anyIngredient";
                         } catch (IOException e) {
                             App.handleException(e);
                             continue;
@@ -270,19 +279,19 @@ public class GourmetQuest {
 
             System.out.println("-".repeat(150));
             System.out.print("Which Recipe do you want to add in To Do List [X to Exit]: ");
-            String PickARecipe = scanner.nextLine();
+            String pickARecipe = scanner.nextLine();
 
-            if (PickARecipe.equalsIgnoreCase("x")) {
+            if (pickARecipe.equalsIgnoreCase("x")) {
                 break;
             }
 
-            if (!PickARecipe.matches("-?\\d+")) {
+            if (!pickARecipe.matches("-?\\d+")) {
                     App.handleError();
                     continue;
             }
 
             else {
-                int recipeIndex = Integer.parseInt(PickARecipe);
+                int recipeIndex = Integer.parseInt(pickARecipe);
 
                 if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
                     App.handleError();
@@ -304,10 +313,10 @@ public class GourmetQuest {
     private String OutputAndSaveItem (List<Recipes> listOfResults, String pathOrSearch) {
         App.clearScreen();
         while (true) {
-            if (pathOrSearch.equals("1")) {
+            if (pathOrSearch.equals("allIngredient")) {
                 System.out.println("Found " + listOfResults.size() + " recipes for All Ingredients");
             }
-            else if (pathOrSearch.equals("2")) {
+            else if (pathOrSearch.equals("AnyIngredient")) {
                 System.out.println("Found " + listOfResults.size() + " recipes for Any Ingredients");
             }
             else{
@@ -318,34 +327,41 @@ public class GourmetQuest {
             
             System.out.println("-".repeat(30));
             System.out.print("Enter a number to view the recipe or type S to save to save a recipe[X to Exit]: ");
-            String PickARecipe = scanner.nextLine();
-            if (PickARecipe.equalsIgnoreCase("X")) {
+            String pickARecipe = scanner.nextLine();
+            if (pickARecipe.equalsIgnoreCase("X")) {
                 return "";
             }
-            else if (PickARecipe.equalsIgnoreCase("S")) {
+            else if (pickARecipe.equalsIgnoreCase("S")) {
                 SavingRecipes(listOfResults);
                 App.clearScreen();
             }
             else {
+
+                if (!pickARecipe.matches("-?\\d+")) {
+                    App.handleError("notNumber");
+                    continue;
+                }
+                int recipeIndex = -1;
+
                 try {
-                    Recipes selectedItem = listOfResults.get(Integer.parseInt(PickARecipe) - 1);
-                    System.out.println("-".repeat(150));
-                    selectedItem.DisplayFood();
-                    App.clearScreen();
+                    recipeIndex = Integer.parseInt(pickARecipe);
                 } catch (NumberFormatException e) {
                     App.handleException(e);
-                } catch (IndexOutOfBoundsException  e) {
-                    App.handleException(e);
-                } catch (InputMismatchException e) {
-                    App.handleException(e);
-                } catch (Exception e) {
-                    App.handleException(e);
                 }
+
+                if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
+                    App.handleError("OutOfRange");
+                    continue;
+                }
+
+                Recipes selectedItem  = listOfResults.get(recipeIndex - 1);
+                selectedItem.DisplayFood();
+                App.clearScreen();
             }             
         }
     }
 
-    public static Recipes savedToDelete (List<Recipes> listOfResults) {
+    public static Recipes deleteSavedRecipes (List<Recipes> listOfResults) {
         Recipes selectedItem = null;
         App.clearScreen();
         while (true) {
@@ -353,17 +369,17 @@ public class GourmetQuest {
             FileHandler.outputRecipes(listOfResults);
             System.out.println("-".repeat(150));
             System.out.print("Select a recipe to delete: ");
-            String PickARecipe = scanner.nextLine();
+            String pickARecipe = scanner.nextLine();
 
-            if (PickARecipe.equalsIgnoreCase("x")) {
+            if (pickARecipe.equalsIgnoreCase("x")) {
                 break;
             }
 
-            else if (!PickARecipe.matches("-?\\d+")) {
+            else if (!pickARecipe.matches("-?\\d+")) {
                 App.handleError();
                 continue;
             }
-            int recipeIndex = Integer.parseInt(PickARecipe);
+            int recipeIndex = Integer.parseInt(pickARecipe);
 
             if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
                 App.handleError();
@@ -376,7 +392,7 @@ public class GourmetQuest {
         return selectedItem;
     }
 
-    public static void deleteFromRecipeCollections(Recipes selectedItem, List<Recipes> listOfResults, String CallerType) {
+    public static void deletingFromCollections(Recipes selectedItem, List<Recipes> listOfResults, String CallerType) {
         while (true) {
             if (CallerType.equals("SavedRecipes")) {
                 System.out.println("-".repeat(150));
@@ -415,17 +431,17 @@ public class GourmetQuest {
 
             System.out.println("-".repeat(150));
             System.out.print("Which Recipe do you want to save [X to Exit]: ");
-            String PickARecipe = scanner.nextLine();
+            String pickARecipe = scanner.nextLine();
 
-            if (PickARecipe.equalsIgnoreCase("x")) {
+            if (pickARecipe.equalsIgnoreCase("x")) {
                 break;
             }
-            if (!PickARecipe.matches("-?\\d+")) {
+            if (!pickARecipe.matches("-?\\d+")) {
                     App.handleError();
                     continue;
             }
             else {
-                int recipeIndex = Integer.parseInt(PickARecipe);
+                int recipeIndex = Integer.parseInt(pickARecipe);
 
                 if (recipeIndex < 0 || recipeIndex > listOfResults.size()) {
                     App.handleError();

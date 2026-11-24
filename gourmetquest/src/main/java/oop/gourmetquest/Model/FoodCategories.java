@@ -27,7 +27,7 @@ public abstract class FoodCategories {
             if (gatherIngredients.equalsIgnoreCase("x")) {
                 break;
             }
-            String ingredient = PutIngredientToList(gatherIngredients, ingredientList);
+            String ingredient = validateIngredients(gatherIngredients, ingredientList);
 
             if (ingredient.isEmpty()){
                 continue;
@@ -38,7 +38,7 @@ public abstract class FoodCategories {
 
     
 
-    public String PutIngredientToList (String pickIngredients, List<String> ingredientList) {
+    public String validateIngredients (String pickIngredients, List<String> ingredientList) {
         
         String ingredient = GetIngredients(pickIngredients, ingredientList);
 
@@ -48,7 +48,7 @@ public abstract class FoodCategories {
         }
 
         if (ingredient.isEmpty()) {
-            System.out.println ("The ingredient " + pickIngredients + " is not on the list");
+            System.out.println ("The ingredient " + pickIngredients + " is not on the given list");
             return "";
         }
 
@@ -66,17 +66,21 @@ public abstract class FoodCategories {
     } 
 
 
-    public static void CategoriesPrintFormat(List<String> ingredientList){
-        int count = 0;
-        System.out.println("-".repeat(150));
-        for (String item : ingredientList){
-            if(count != 14){
-                System.out.print(item + " | ");
+    public static void CategoriesPrintFormat(List<String> ingredientList) {
+        int maxWidth = 150;
+        int currentLineLength = 0;
+        System.out.println("-".repeat(maxWidth));
+
+        for (String item : ingredientList) {
+            String formattedItem = item + " | ";
+
+            if (currentLineLength + formattedItem.length() > maxWidth) {
+                System.out.println();
+                currentLineLength = 0;
             }
-            else{
-                count = 0;
-            }  
-            count ++;
+
+            System.out.print(formattedItem);
+            currentLineLength += formattedItem.length();
         }
         System.out.println();
     }

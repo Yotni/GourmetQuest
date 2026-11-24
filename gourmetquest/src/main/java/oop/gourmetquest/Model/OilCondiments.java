@@ -1,8 +1,7 @@
 package oop.gourmetquest.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 
 import oop.gourmetquest.App;
 
@@ -10,9 +9,17 @@ public class OilCondiments extends FoodCategories {
 
     public static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> listOfCondiments = List.of("Vinegar", "Soy Sauce", "Mayonnaise", "Mustard", "Patis", "Fish Sauce", "Bagoong");
-    public static List<String> listOfSauces = List.of("Ketchup", "Hot Sauce", "Barbecue Sauce", "Salsa", "Tomato Sauce", "Sriracha", "Oyster Sauce");
-    public static List<String> listOfOils = List.of("Canolla Oil", "Olive Oil", "Vegetable Oil", "Sunflower Oil", "Sesame Oil", "Coconut Oil");
+    public static List<String> listOfCondiments = List.of("Vinegar", "Soy Sauce", "Mayonnaise", "Mustard", "Patis", "Fish Sauce", "Bagoong", 
+        "Worcestershire Sauce", "Hot Mustard", "Relish", "Pickles", "Honey", "BBQ Rub", "Mirin", "Miso Paste"
+    );
+    public static List<String> listOfSauces = List.of("Ketchup", "Hot Sauce", "Barbecue Sauce", "Salsa", "Tomato Sauce", "Sriracha",
+        "Oyster Sauce", "Hoisin Sauce", "Teriyaki Sauce", "Sweet Chili Sauce", "Worcestershire Sauce", "Pesto", "Alfredo Sauce", "Marinara Sauce",
+        "Fish Sauce", "Chili Garlic Sauce",
+        "Gravy", "Cheese Sauce"
+    );
+    public static List<String> listOfOils = List.of( "Canola Oil", "Olive Oil", "Vegetable Oil",
+        "Sunflower Oil", "Sesame Oil", "Coconut Oil", "Corn Oil", "Peanut Oil", "Soybean Oil", "Avocado Oil", "Butter", "Margarine", "Ghee"
+    );
 
 
     List<String> condiments;
@@ -34,7 +41,8 @@ public class OilCondiments extends FoodCategories {
         oilCondiments : while (true) {
             System.out.println("What do you want to gather? [X to Exit]");
             System.out.println("[1] Condiments \n[2] Sauces \n[3] Oils ");
-            System.out.print("Choose your field:");
+            System.out.println("-".repeat(30));
+            System.out.print("Select an option: ");
             String DairyPath = scanner.nextLine();
 
             switch (DairyPath.toLowerCase()) {

@@ -51,17 +51,17 @@ public class FileHandler {
              Files.writeString(FilePath.toPath(), "[]");
         }
  
-        List<Recipes> Recipes = deserialize(FilePath);
+        List<Recipes> recipes = deserialize(FilePath);
     
         boolean isSaved = false;
-        for (Recipes Recipe : Recipes) {
+        for (Recipes Recipe : recipes) {
             if(Recipe.getName().equalsIgnoreCase(pickRecipe.getName())) {
                 isSaved = true;
                 break;
             }
         }
         if (!isSaved) {
-            Recipes.add(pickRecipe);
+            recipes.add(pickRecipe);
             App.clearScreen();
             System.out.println("Successfully added: " + pickRecipe.getName());
             System.out.println("-".repeat(150));
@@ -81,7 +81,7 @@ public class FileHandler {
             
         }
 
-        mapper.writerWithDefaultPrettyPrinter().writeValue(FilePath, Recipes);
+        mapper.writerWithDefaultPrettyPrinter().writeValue(FilePath, recipes);
         
     }
 
@@ -113,18 +113,18 @@ public class FileHandler {
     }
 
     //find Food name
-    public static List<Recipes> SearchingName(String Search) throws IOException{
+    public static List<Recipes> searchByName (String search) throws IOException{
 
         List<Recipes> recipes = deserialize(FilePathRecipes);  
         
         List<Recipes> listOfResults = new ArrayList<>();
 
-        if(Search.isEmpty()) {
+        if(search.isEmpty()) {
             return listOfResults;   
         }
         if (recipes != null) {
             for (Recipes recipe : recipes){
-                if (recipe.getName().toLowerCase().contains(Search.toLowerCase())){
+                if (recipe.getName().toLowerCase().contains(search.toLowerCase())){
                     listOfResults.add(recipe);
                 }
             }
@@ -144,7 +144,7 @@ public class FileHandler {
 
 
     // filtering every items
-    public static  List<Recipes> filteringEveryItems (List<String> AllIngredients) throws IOException {
+    public static  List<Recipes> filteringAll (List<String> allIngredient) throws IOException {
         List<Recipes> recipes = deserialize(FilePathRecipes);
         
         List<Recipes> listOfResults = new ArrayList<>();
@@ -153,7 +153,7 @@ public class FileHandler {
             boolean allRecipeIngredientsFound = true;
             for (String recipeIngredient : recipe.getIngredients()) {
                 boolean found = false;
-                for (String ingredient : AllIngredients) {
+                for (String ingredient : allIngredient) {
                     if (recipeIngredient.toLowerCase().contains(ingredient.toLowerCase())) {
                         found = true;      
                         break;             
@@ -173,14 +173,14 @@ public class FileHandler {
     }
     
     //filtering thorgh ingredients At least one
-    public static  List<Recipes> filteringAtLeast1 (List<String> AllIngredients) throws IOException {
+    public static  List<Recipes> filteringAtLeast1 (List<String> anyIngredient) throws IOException {
         List<Recipes> recipes = deserialize(FilePathRecipes);
 
         List<Recipes> listOfResults = new ArrayList<>();
        
         for (Recipes recipe : recipes ) {
             for (String RecipeIngredient : recipe.getIngredients()) {
-                for (String ingredient : AllIngredients) {
+                for (String ingredient : anyIngredient) {
                     if(RecipeIngredient.toLowerCase().contains(ingredient.toLowerCase())) {
                     listOfResults.add(recipe);
                     }   

@@ -44,7 +44,7 @@ public class App {
             System.out.println("[3] To do List [" + listOfResults.size() +"]");
             System.out.println("[4] What can I cook? [Random Recipes]");
             System.out.println("[5] Exit");
-            System.out.print("Choose Your Path: ");
+            System.out.print("Select an option: ");
             
             String FoodPath = scanner.nextLine();
 
@@ -76,10 +76,12 @@ public class App {
     private static void searchRecipes() {
         clearScreen();
         searchRecipes : while (true) {
-            System.out.println("How do you want to search[X to exit]:");
+            System.out.println("How would you like to search? [X to exit]:");
             System.out.println("[1] Search through name");
-            System.out.println("[2] Search through filtering");
-            System.out.print("Choose Your Path: ");
+            System.out.println("[2] Search by filter");
+            
+            System.out.println("-".repeat(30));
+            System.out.print("Select an option: ");
 
             String SearchPath = scanner.nextLine();
 
@@ -104,7 +106,7 @@ public class App {
     private static void SavedRecipes() {
         clearScreen();
         SavedRecipes : while (true) {
-            System.out.println("Recipes You have saved [[TD] Add to-do list | [D] Delete saved recipe]: ");
+            System.out.println("Recipes you have saved [[TD] Add to-do list | [D] Delete saved recipe]: ");
             System.out.println("-".repeat(150));
 
             List<Recipes> listOfResults = new ArrayList<>();
@@ -125,7 +127,7 @@ public class App {
 
             }
             System.out.println("-".repeat(30));
-            System.out.print("Choose a recipe to view[X to Exit]: ");
+            System.out.print("Choose a recipe to view [X to Exit]: ");
             String PickARecipe = scanner.nextLine();
 
             if (PickARecipe.equalsIgnoreCase("X")) {
@@ -139,9 +141,9 @@ public class App {
                 continue; 
             }
             else if (PickARecipe.equalsIgnoreCase("D")) {
-                Recipes selectedItem = GourmetQuest.savedToDelete(listOfResults);
+                Recipes selectedItem = GourmetQuest.deleteSavedRecipes(listOfResults);
 
-                GourmetQuest.deleteFromRecipeCollections(selectedItem, listOfResults, "SavedRecipes"); 
+                GourmetQuest.deletingFromCollections(selectedItem, listOfResults, "SavedRecipes"); 
             }
             else if (PickARecipe.equalsIgnoreCase("TD")) {
                 GourmetQuest.AddToDoList(listOfResults, FilePathToDoList);
@@ -176,7 +178,7 @@ public class App {
     private static void toDoList() {
         clearScreen();
         todoList : while(true) {
-            System.out.println("Your to do List: ");
+            System.out.println("To-Do List: ");
 
             if(!FilePathToDoList.exists()) {
                 App.clearScreen();
@@ -215,12 +217,11 @@ public class App {
                 continue;
             }
 
-            if (!PickARecipe.matches("-?\\d+")) {
-                handleError("notNumber");
-                continue;
-            }
-
             else {
+                if (!PickARecipe.matches("-?\\d+")) {
+                    handleError("notNumber");
+                    continue;
+                }
                 int recipeIndex = -1;
 
                 try {
@@ -236,7 +237,7 @@ public class App {
 
                 Recipes selectedItem  = listOfResults.get(recipeIndex - 1);
                 selectedItem.DisplayFood();
-                GourmetQuest.deleteFromRecipeCollections(selectedItem, listOfResults, "toDoList");
+                GourmetQuest.deletingFromCollections(selectedItem, listOfResults, "toDoList");
                 
             }
         }
@@ -254,7 +255,7 @@ public class App {
             System.out.println("[4] Dessert ");
             System.out.println("[5] Appetizer");
             System.out.println("-".repeat(30));
-            System.out.print("Choose Your Meal Type: ");
+            System.out.print("Select Your Meal Type: ");
 
             String pickrandomRecipe = scanner.nextLine();
 
